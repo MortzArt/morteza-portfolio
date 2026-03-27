@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Morteza Ebrahimi — Senior Product Designer</title>
+<style>
+:root{
+  --primary:#BEFF3C;--pd:#939A04;--pdd:#6b7103;
+  --neutral:#F8F9FA;--n2:#EFEFEF;--n3:#E2E2E2;
+  --surface:#fff;--border:#E0E1DC;--border2:#D0D1CB;
+  --text:#1a1c0f;--t2:#555845;--t3:#8a8d7a;--inv:#111;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--neutral);color:var(--text);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(248,249,250,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.08)}
+.nav-logo{font-size:14px;font-weight:800;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;gap:8px}
+.ndot{width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block;animation:ndot 3s ease-in-out infinite}
+@keyframes ndot{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{font-size:13px;color:var(--t2);cursor:pointer;transition:all .2s;padding:7px 14px;border-radius:6px;font-weight:500}
+.nav-links a:hover{color:var(--text);background:var(--n2)}
+.nav-links a.active{color:var(--text);background:var(--primary);font-weight:700}
+.nav-cta{font-size:12px;font-weight:700;padding:9px 20px;border:none;border-radius:6px;cursor:pointer;background:var(--inv);color:#fff;transition:all .2s;letter-spacing:.04em}
+.nav-cta:hover{background:var(--primary);color:var(--inv)}
+
+/* ── BTNS ── */
+.btn-p{padding:13px 28px;background:var(--primary);color:var(--inv);font-size:13px;font-weight:700;border:none;border-radius:7px;cursor:pointer;transition:all .2s;letter-spacing:.02em}
+.btn-p:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(190,255,60,.35)}
+.btn-i{padding:13px 28px;background:var(--inv);color:#fff;font-size:13px;font-weight:700;border:none;border-radius:7px;cursor:pointer;transition:all .2s}
+.btn-i:hover{opacity:.85;transform:translateY(-1px)}
+.btn-o{padding:13px 28px;background:transparent;color:var(--text);font-size:13px;font-weight:600;border:1.5px solid var(--border2);border-radius:7px;cursor:pointer;transition:all .2s}
+.btn-o:hover{border-color:var(--pd);color:var(--pd)}
+
+/* ══════════ HOME ══════════ */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 0}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 8s ease-out}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(248,249,250,.15) 0%, rgba(248,249,250,.82) 60%, rgba(248,249,250,1) 100%)}
+.hero-content{position:relative;z-index:1;padding-bottom:0}
+.hero-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--pd)}
+.hero-name{font-size:clamp(54px,8.5vw,120px);font-weight:800;line-height:.9;letter-spacing:-.04em;margin-bottom:28px}
+.hero-name em{font-style:normal;background:var(--primary);padding:0 10px;border-radius:5px;display:inline-block}
+.hero-bio{font-size:clamp(15px,1.4vw,18px);color:var(--t2);max-width:520px;line-height:1.75;margin-bottom:48px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.hero-badge{position:absolute;top:130px;right:56px;z-index:2;background:var(--primary);border-radius:14px;padding:22px 28px;box-shadow:0 16px 48px rgba(190,255,60,.3);animation:badge-float 4s ease-in-out infinite}
+@keyframes badge-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.badge-role{font-size:13px;font-weight:800;color:var(--inv)}
+.badge-loc{font-size:11px;color:var(--pdd);margin-top:3px}
+.badge-avail{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:11px;color:var(--pdd)}
+.hero-kpis{position:relative;z-index:1;display:flex;gap:0;border-top:1.5px solid var(--border)}
+.kpi{flex:1;padding:32px 40px;border-right:1.5px solid var(--border);transition:background .2s}
+.kpi:last-child{border-right:none}
+.kpi:hover{background:var(--n2)}
+.kpi-val{font-size:38px;font-weight:800;letter-spacing:-.03em}
+.kpi-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-top:4px}
+
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;background:var(--inv);padding:16px 0;border-top:none}
+.marquee-track{display:flex;gap:0;animation:marquee 22s linear infinite;width:max-content}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0 32px;white-space:nowrap;transition:color .2s}
+.marquee-item.accent{color:var(--primary)}
+.marquee-item:hover{color:#fff}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── HOME SELECTED WORK ── */
+.sec{padding:100px 56px}
+.sec-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:12px;margin-bottom:48px}
+.sec-label::before{content:'';width:20px;height:1.5px;background:var(--primary)}
+.sec-h{font-size:clamp(30px,4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.wcard{border-radius:14px;overflow:hidden;position:relative;cursor:pointer;group}
+.wcard-img{height:340px;position:relative;overflow:hidden;background:var(--n2)}
+.wcard-img img{transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.wcard:hover .wcard-img img{transform:scale(1.06)}
+.wcard-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);background:var(--n2)}
+.wcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,5,.85) 0%,transparent 55%);opacity:0;transition:opacity .4s}
+.wcard:hover .wcard-overlay{opacity:1}
+.wcard-info{padding:24px;background:var(--surface);border:1.5px solid var(--border);border-top:none;border-radius:0 0 14px 14px}
+.wcard-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pd);font-weight:700;margin-bottom:8px}
+.wcard-title{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.wcard-desc{font-size:13px;color:var(--t2);line-height:1.65}
+.wcard-arrow{font-size:20px;transition:transform .2s;flex-shrink:0}
+.wcard:hover .wcard-arrow{transform:translate(4px,-4px)}
+
+/* ── PARALLAX BANNER ── */
+.parallax{height:480px;position:relative;overflow:hidden}
+.parallax-img{position:absolute;inset:-15%;width:130%;height:130%;will-change:transform}
+.parallax-img img{width:100%;height:100%;object-fit:cover}
+.parallax-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--inv) 0%,#2a3010 100%);display:flex;align-items:center;justify-content:center}
+.parallax-overlay{position:absolute;inset:0;background:rgba(10,12,5,.55);display:flex;align-items:center;justify-content:center;padding:56px}
+.parallax-text{max-width:760px;text-align:center}
+.parallax-text blockquote{font-size:clamp(20px,3vw,36px);font-weight:700;line-height:1.35;letter-spacing:-.02em;color:#fff;margin-bottom:20px}
+.parallax-text cite{font-size:13px;color:rgba(255,255,255,.5);font-style:normal;letter-spacing:.08em;text-transform:uppercase}
+
+/* ── ABOUT STRIP ── */
+.about-strip{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+.about-strip-img{position:relative;overflow:hidden;background:var(--n2)}
+.about-strip-img img{height:100%;object-fit:cover;transition:transform .6s ease}
+.about-strip:hover .about-strip-img img{transform:scale(1.03)}
+.about-strip-content{padding:72px 64px;display:flex;flex-direction:column;justify-content:center;background:var(--inv)}
+.about-strip-content .sec-label{color:rgba(255,255,255,.35)}
+.about-strip-content .sec-label::before{background:var(--primary)}
+.about-strip-content h2{font-size:clamp(26px,3vw,40px);font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:20px;line-height:1.15}
+.about-strip-content p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:32px}
+
+/* ══════════ PROJECTS ══════════ */
+.proj-hero{padding:140px 56px 64px;position:relative;overflow:hidden}
+.proj-hero-bg{position:absolute;inset:0;z-index:0}
+.proj-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.07}
+.proj-hero-content{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.proj-hero-content p{font-size:15px;color:var(--t2);line-height:1.75}
+
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 56px 100px}
+.pcard{background:var(--surface);border-radius:14px;border:1.5px solid var(--border);overflow:hidden;cursor:pointer;transition:all .3s}
+.pcard:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 12px 40px rgba(190,255,60,.12)}
+.pcard.wide{grid-column:span 2}
+.pcard-img-wrap{height:260px;overflow:hidden;background:var(--n2);position:relative}
+.pcard-img-wrap img{transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.pcard:hover .pcard-img-wrap img{transform:scale(1.05)}
+.pcard-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.pcard.wide .pcard-img-wrap{height:360px}
+.pcard-body{padding:32px 36px}
+.pcard-tag{display:inline-flex;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pd);background:rgba(147,154,4,.1);border-radius:4px;padding:4px 10px;margin-bottom:16px;font-weight:700}
+.pcard-num{float:right;font-size:11px;color:var(--t3);font-weight:600}
+.pcard-title{font-size:clamp(17px,2vw,24px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.pcard-desc{font-size:13px;color:var(--t2);line-height:1.75;max-width:480px}
+.pcard-metrics{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.pm{border-left:3px solid var(--primary);padding-left:14px}
+.pm-val{font-size:20px;font-weight:800;color:var(--pd);line-height:1}
+.pm-lbl{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-top:3px}
+.pcard-arrow{font-size:18px;transition:transform .2s;flex-shrink:0}
+.pcard:hover .pcard-arrow{transform:translate(4px,-4px)}
+
+/* ── Parallax mid-projects ── */
+.proj-parallax{height:360px;position:relative;overflow:hidden;margin:0 56px 0;border-radius:16px}
+.proj-parallax .parallax-img{inset:-10%}
+
+/* ══════════ EXPERIENCE ══════════ */
+.exp-hero{padding:140px 56px 72px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+.exp-hero p{font-size:15px;color:var(--t2);line-height:1.75}
+.elist{display:flex;flex-direction:column;gap:8px;padding:0 56px}
+.eitem{background:var(--surface);padding:36px 44px;display:grid;grid-template-columns:180px 1fr 160px;gap:24px;align-items:start;transition:all .2s;border-radius:12px;border:1.5px solid var(--border)}
+.eitem:hover{border-color:var(--primary);transform:translateX(4px)}
+.edate{font-size:12px;color:var(--t3);font-weight:500}
+.erole{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.eco{font-size:11px;color:var(--pd);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.eloc{font-size:11px;color:var(--t3);margin-bottom:12px}
+.edesc{font-size:13px;color:var(--t2);line-height:1.75}
+.edesc li{margin-left:16px;margin-bottom:5px}
+.etype{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);text-align:right;font-weight:600}
+
+.skills-block{margin:24px 56px 0;padding:44px;background:var(--surface);border-radius:12px;border:1.5px solid var(--border)}
+.skills-block h3{font-size:14px;font-weight:700;margin-bottom:24px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
+.stag{font-size:12px;padding:8px 14px;border:1.5px solid var(--border);border-radius:6px;color:var(--t2);transition:all .2s;cursor:default;font-weight:500;background:var(--neutral)}
+.stag:hover{border-color:var(--primary);background:rgba(190,255,60,.1);color:var(--pdd)}
+
+/* Parallax exp banner */
+.exp-parallax{height:320px;position:relative;overflow:hidden;margin:40px 56px;border-radius:16px}
+
+/* ══════════ ABOUT ══════════ */
+.about-fullimg{height:520px;position:relative;overflow:hidden}
+.about-fullimg img{width:100%;height:100%;object-fit:cover;object-position:top}
+.about-fullimg-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--n2) 0%,var(--n3) 100%);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.about-fullimg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--neutral) 100%)}
+.about-intro-sec{padding:64px 56px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-big-text{font-size:clamp(18px,2.2vw,26px);font-weight:700;line-height:1.5;letter-spacing:-.01em;margin-bottom:24px}
+.about-big-text mark{background:var(--primary);padding:1px 7px;border-radius:3px;color:var(--inv);font-style:normal}
+.about-body-text{font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:36px}
+.about-split{display:grid;grid-template-columns:1fr 1fr;min-height:480px;margin-top:0}
+.about-split-img{position:relative;overflow:hidden;background:var(--n2)}
+.about-split-img img{height:100%;object-fit:cover}
+.about-split-content{padding:64px;background:var(--surface);display:flex;flex-direction:column;justify-content:center;gap:40px;border-left:1.5px solid var(--border)}
+.ablock h4{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;font-weight:700}
+.ablock p{font-size:13px;color:var(--t2);line-height:1.7}
+.tools-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.ttag{font-size:11px;padding:5px 12px;border:1.5px solid var(--border);border-radius:4px;color:var(--t2);background:var(--neutral);font-weight:500}
+
+/* ══════════ CASE STUDY MODAL ══════════ */
+.cs-bg{position:fixed;inset:0;z-index:600;background:rgba(20,22,15,.8);backdrop-filter:blur(14px);display:flex;align-items:flex-start;justify-content:center;padding:80px 24px 40px;opacity:0;pointer-events:none;transition:opacity .3s;overflow-y:auto}
+.cs-bg.open{opacity:1;pointer-events:all}
+.cs-modal{background:var(--surface);border:1.5px solid var(--border2);border-radius:16px;width:100%;max-width:800px;transform:translateY(24px);transition:transform .35s;overflow:hidden}
+.cs-bg.open .cs-modal{transform:none}
+.cs-head{background:var(--primary);padding:44px 48px 40px;position:relative}
+.cs-close{position:absolute;top:20px;right:20px;background:rgba(0,0,0,.12);border:none;border-radius:6px;padding:7px 12px;font-size:15px;cursor:pointer;color:var(--inv);line-height:1;font-weight:700;transition:background .2s}
+.cs-close:hover{background:rgba(0,0,0,.22)}
+.cs-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pdd);font-weight:700;margin-bottom:10px}
+.cs-title{font-size:clamp(22px,3.5vw,38px);font-weight:800;letter-spacing:-.03em;color:var(--inv);line-height:1.1;margin-bottom:12px}
+.cs-sub{font-size:14px;color:var(--pdd);line-height:1.65;max-width:560px}
+.cs-tags{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.cs-tag{font-size:11px;background:rgba(0,0,0,.12);padding:5px 12px;border-radius:4px;color:var(--inv);font-weight:600}
+.cs-body{padding:48px}
+.cs-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:40px}
+.cs-strip-cell{background:var(--n2);padding:18px 20px}
+.cs-strip-cell:first-child{border-radius:8px 0 0 8px}
+.cs-strip-cell:last-child{border-radius:0 8px 8px 0}
+.cs-strip-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);font-weight:600;margin-bottom:5px}
+.cs-strip-val{font-size:13px;font-weight:700;color:var(--text)}
+.cs-quote{border-left:3px solid var(--primary);padding-left:20px;margin-bottom:28px}
+.cs-quote p{font-size:15px;font-style:italic;color:var(--t2);line-height:1.75}
+.cs-intro{font-size:14px;color:var(--t2);line-height:1.85;margin-bottom:40px}
+.cs-ch{background:var(--n2);border-radius:12px;padding:32px;margin-bottom:16px;border:1.5px solid var(--border)}
+.cs-ch-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.cs-ch-badge{font-size:10px;font-weight:800;padding:4px 10px;border-radius:4px;letter-spacing:.08em}
+.cs-ch-badge.c1{background:var(--primary);color:var(--inv)}
+.cs-ch-badge.c2{background:var(--inv);color:#fff}
+.cs-ch-title{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.01em}
+.cs-ch-intro{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:20px}
+.cs-find-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);font-weight:600;margin-bottom:12px}
+.cs-findings{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.cs-find{background:var(--surface);border-radius:7px;padding:14px 16px;border:1.5px solid var(--border);display:flex;gap:12px}
+.cs-find-num{font-size:11px;font-weight:800;color:var(--pd);min-width:70px;padding-top:1px;flex-shrink:0}
+.cs-find p{font-size:13px;color:var(--t2);line-height:1.65}
+.cs-decs{display:flex;flex-direction:column;gap:10px}
+.cs-dec{background:var(--surface);border-radius:7px;padding:16px 18px;border:1.5px solid var(--border)}
+.cs-dec-title{font-size:12px;font-weight:700;color:var(--pd);margin-bottom:6px}
+.cs-dec p{font-size:13px;color:var(--t2);line-height:1.7}
+.cs-code{background:var(--n2);border-radius:5px;padding:12px 14px;font-size:12px;color:var(--t2);line-height:1.9;font-family:monospace;border:1px solid var(--border);margin:10px 0}
+.cs-badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cs-badge-box{background:var(--n2);border-radius:5px;padding:10px 14px;border:1px solid var(--border);flex:1;min-width:180px}
+.cs-badge-box.highlight{border-color:var(--primary)}
+.cs-badge-name{font-size:11px;font-weight:700;margin-bottom:4px}
+.cs-badge-name.lime{color:var(--pd)}
+.cs-badge-desc{font-size:12px;color:var(--t2)}
+.cs-aside-quote{border-left:3px solid var(--primary);padding-left:14px;margin-top:12px}
+.cs-aside-quote p{font-size:13px;font-style:italic;color:var(--t2);line-height:1.7}
+.cs-fail-modes{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.cs-fail{background:var(--surface);border-radius:7px;padding:14px 16px;border:1.5px solid var(--border);flex:1;min-width:180px}
+.cs-fail h5{font-size:11px;font-weight:700;color:var(--text);margin-bottom:5px}
+.cs-fail p{font-size:12px;color:var(--t2);line-height:1.65}
+.cs-options{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.cs-opt{background:var(--surface);border-radius:7px;padding:14px 16px;border:1.5px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+.cs-opt.out{opacity:.6}
+.cs-opt.selected{border-color:var(--primary)}
+.cs-opt-badge{font-size:10px;font-weight:800;padding:3px 8px;border-radius:3px;white-space:nowrap;margin-top:1px;flex-shrink:0}
+.cs-opt-badge.out{background:var(--n3);color:var(--t3)}
+.cs-opt-badge.sel{background:var(--primary);color:var(--inv)}
+.cs-opt h5{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
+.cs-opt p{font-size:12px;color:var(--t2);line-height:1.65}
+.cs-tradeoff{border:1.5px solid var(--border2);border-radius:7px;padding:16px 18px;background:var(--surface)}
+.cs-tradeoff h5{font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px}
+.cs-tradeoff p{font-size:13px;color:var(--t2);line-height:1.7}
+.cs-results{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.cs-result{background:var(--n2);border-radius:8px;padding:20px 22px;border:1.5px solid var(--border)}
+.cs-result-val{font-size:26px;font-weight:800;color:var(--pd);letter-spacing:-.02em}
+.cs-result-lbl{font-size:10px;color:var(--t3);margin-top:4px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.cs-results-note{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:36px}
+.cs-lessons{display:flex;flex-direction:column;gap:10px}
+.cs-lesson{display:flex;gap:12px;align-items:flex-start}
+.cs-lesson-dot{background:var(--primary);width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.cs-lesson p{font-size:13px;color:var(--t2);line-height:1.7}
+
+/* ══════════ CONTACT MODAL ══════════ */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(20,22,15,.75);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1.5px solid var(--border2);border-radius:14px;padding:52px;width:100%;max-width:520px;transform:translateY(20px) scale(.98);transition:transform .3s;box-shadow:0 24px 64px rgba(0,0,0,.15)}
+.modal-bg.open .modal{transform:none}
+.modal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px}
+.modal-close{background:var(--n2);border:none;color:var(--t2);font-size:16px;line-height:1;cursor:pointer;padding:8px 10px;border-radius:6px;transition:all .2s}
+.modal-close:hover{background:var(--n3);color:var(--text)}
+.modal-title{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.modal-sub{font-size:14px;color:var(--t2);margin-top:6px;line-height:1.6}
+.clinks{display:flex;flex-direction:column;gap:10px}
+.clink{display:flex;align-items:center;gap:16px;padding:15px 18px;border:1.5px solid var(--border);border-radius:8px;color:var(--text);transition:all .2s;background:var(--neutral)}
+.clink:hover{border-color:var(--primary);background:rgba(190,255,60,.08);transform:translateX(3px)}
+.clink-icon{width:38px;height:38px;background:var(--n2);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;font-weight:700;color:var(--t2);border:1.5px solid var(--border)}
+.clink-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:3px;font-weight:600}
+.clink-val{font-size:14px;font-weight:600}
+.modal-div{height:1.5px;background:var(--border);margin:24px 0}
+.avail{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t2)}
+.dot-g{width:7px;height:7px;border-radius:50%;background:#4caf50;flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+footer{padding:36px 56px;border-top:1.5px solid var(--border);background:var(--surface);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.fl{font-size:13px;color:var(--t3);transition:color .2s;font-weight:500}
+.fl:hover{color:var(--text)}
+
+@media(max-width:900px){
+  nav{padding:16px 20px}
+  .hero,.sec{padding-left:20px;padding-right:20px}
+  .hero-name{font-size:52px}
+  .hero-badge{display:none}
+  .hero-kpis .kpi{padding:20px 16px}
+  .work-grid,.proj-hero-content,.pgrid,.exp-hero,.about-intro-sec,.about-split{grid-template-columns:1fr}
+  .pcard.wide{grid-column:span 1}
+  .eitem{grid-template-columns:1fr;gap:6px}
+  .etype{text-align:left}
+  .modal{padding:28px;margin:16px}
+  .pgrid,.elist,.skills-block,.exp-parallax,.proj-parallax{margin-left:20px;margin-right:20px;padding-left:0;padding-right:0}
+  .cs-body{padding:28px 20px}
+  .cs-head{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <span class="nav-logo" onclick="goTo('home')"><span class="ndot"></span>ME.</span>
+  <ul class="nav-links">
+    <li><a onclick="goTo('home')" data-page="home">Home</a></li>
+    <li><a onclick="goTo('projects')" data-page="projects">Projects</a></li>
+    <li><a onclick="goTo('experience')" data-page="experience">Experience</a></li>
+    <li><a onclick="goTo('about')" data-page="about">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Contact Me</button>
+</nav>
+
+<!-- ══════════════════════════════ HOME ══════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg" id="hero-bg">
+      <!-- REPLACE: hero background image -->
+      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=1600&q=80" alt="hero background" id="hero-img"/>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Senior Product Designer · Barcelona, Spain</p>
+      <h1 class="hero-name">Morteza<br><em>Ebrahimi</em></h1>
+      <p class="hero-bio">12+ years crafting high-impact digital experiences for Fintech and SaaS. I turn complex problems into intuitive, data-informed design that moves the needle.</p>
+      <div class="hero-actions">
+        <button class="btn-p" onclick="goTo('projects')">View Work</button>
+        <button class="btn-i" onclick="openModal()">Contact Me</button>
+        <button class="btn-o" onclick="goTo('about')">About Me</button>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-role">Senior Product Designer</div>
+      <div class="badge-loc">Barcelona · Remote</div>
+      <div class="badge-avail"><span class="dot-g"></span>Available for projects</div>
+    </div>
+    <div class="hero-kpis">
+      <div class="kpi"><div class="kpi-val">12+</div><div class="kpi-lbl">Years Experience</div></div>
+      <div class="kpi"><div class="kpi-val">17+</div><div class="kpi-lbl">Client Projects</div></div>
+      <div class="kpi"><div class="kpi-val">300%</div><div class="kpi-lbl">User Growth Delivered</div></div>
+      <div class="kpi"><div class="kpi-val">5M</div><div class="kpi-lbl">Users Researched</div></div>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item accent">Product Design</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Interaction Design</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Fintech</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Design Systems</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">SaaS</span><span class="marquee-item">·</span>
+      <span class="marquee-item">User Research</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Prototyping</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Figma</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Barcelona</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Remote</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Product Design</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Interaction Design</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Fintech</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Design Systems</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">SaaS</span><span class="marquee-item">·</span>
+      <span class="marquee-item">User Research</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Prototyping</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Figma</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">Barcelona</span><span class="marquee-item">·</span>
+      <span class="marquee-item">Remote</span><span class="marquee-item">·</span>
+    </div>
+  </div>
+
+  <!-- Selected Work -->
+  <div class="sec">
+    <div class="sec-label">Selected Work</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:end;margin-bottom:16px">
+      <h2 class="sec-h">Recent projects<br>worth seeing</h2>
+      <p style="font-size:15px;color:var(--t2);line-height:1.75;padding-left:40px">A curated look at the work that shaped the most. Each project tells a story of research, systems, and measurable outcomes.</p>
+    </div>
+    <div class="work-grid">
+      <div class="wcard" onclick="goTo('projects')">
+        <div class="wcard-img">
+          <!-- REPLACE: project 1 image -->
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80" alt="PONS project"/>
+          <div class="wcard-overlay"></div>
+        </div>
+        <div class="wcard-info">
+          <div class="wcard-tag">Fintech · AI · Marketplace</div>
+          <div class="wcard-title">PONS — Talent Marketplace<span class="wcard-arrow">↗</span></div>
+          <div class="wcard-desc">Turned a 3,000-profile pool into a boutique hiring experience. +60% client-to-hire ratio.</div>
+        </div>
+      </div>
+      <div class="wcard" onclick="goTo('projects')">
+        <div class="wcard-img">
+          <!-- REPLACE: project 2 image -->
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="AVA Banking"/>
+          <div class="wcard-overlay"></div>
+        </div>
+        <div class="wcard-info">
+          <div class="wcard-tag">Digital Banking · Mobile</div>
+          <div class="wcard-title">AVA Digital Banking<span class="wcard-arrow">↗</span></div>
+          <div class="wcard-desc">Full redesign of Farda-Bank's app. 300%+ customer base growth.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;padding-top:40px">
+      <button class="btn-o" onclick="goTo('projects')">See All Projects →</button>
+    </div>
+  </div>
+
+  <!-- Parallax quote -->
+  <div class="parallax" id="parallax-home">
+    <div class="parallax-img" id="pimg-home">
+      <!-- REPLACE: parallax background -->
+      <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1600&q=80" alt="design process"/>
+    </div>
+    <div class="parallax-overlay">
+      <div class="parallax-text">
+        <blockquote>"The best design doesn't feel like design — it feels like the only way it could have been."</blockquote>
+        <cite>Morteza Ebrahimi · Senior Product Designer</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- About strip -->
+  <div class="about-strip">
+    <div class="about-strip-img">
+      <!-- REPLACE: about strip photo -->
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Morteza Ebrahimi" style="width:100%;height:100%"/>
+    </div>
+    <div class="about-strip-content">
+      <div class="sec-label" style="margin-bottom:24px">Who I Am</div>
+      <h2>Designer by craft.<br>Engineer by training.<br><span style="color:var(--primary)">Problem solver</span> by nature.</h2>
+      <p>12+ years at the intersection of complexity and clarity. From pharmacy branding in Tehran to fintech products serving millions — every project has been a lesson in making the hard stuff feel effortless.</p>
+      <button class="btn-p" onclick="goTo('about')">Read More →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ PROJECTS ══════════════════════════════ -->
+<div class="page" id="page-projects">
+  <div class="proj-hero">
+    <div class="proj-hero-bg">
+      <!-- REPLACE: projects hero background -->
+      <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1600&q=80" alt="projects bg"/>
+    </div>
+    <div class="proj-hero-content">
+      <div>
+        <div class="sec-label">Projects & Case Studies</div>
+        <h2 class="sec-h">Work that<br>moves metrics</h2>
+      </div>
+      <p>A selection of product design work spanning Fintech, SaaS, and digital banking. Each project is rooted in research, systems thinking, and measurable outcomes.</p>
+    </div>
+  </div>
+
+  <div class="pgrid">
+    <!-- PONS FEATURED -->
+    <div class="pcard wide" onclick="openCaseStudy()">
+      <div class="pcard-img-wrap">
+        <!-- REPLACE: PONS case study image -->
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80" alt="PONS"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,5,.7) 0%,transparent 50%)"></div>
+        <div style="position:absolute;bottom:24px;left:36px;right:36px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span style="font-size:11px;background:var(--primary);padding:5px 12px;border-radius:4px;color:var(--inv);font-weight:700">Case Study Available</span>
+          </div>
+          <span style="font-size:24px;color:#fff;opacity:.7">↗</span>
+        </div>
+      </div>
+      <div class="pcard-body">
+        <span class="pcard-tag">Marketplace UX · Service Design · IA</span>
+        <span class="pcard-num">01</span>
+        <div class="pcard-title">PONS — Turning Overwhelm into Trust<span class="pcard-arrow">↗</span></div>
+        <p class="pcard-desc">Transformed a 3,000-profile talent marketplace into a boutique hiring experience. Redesigned trust architecture, information structure, and service layer to reduce client anxiety and drive conversion.</p>
+        <div class="pcard-metrics">
+          <div class="pm"><div class="pm-val">+60%</div><div class="pm-lbl">Client-to-hire ratio</div></div>
+          <div class="pm"><div class="pm-val">2d→1h</div><div class="pm-lbl">Shortlist generation</div></div>
+          <div class="pm"><div class="pm-val">2</div><div class="pm-lbl">Core challenges</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">
+          <span style="font-size:11px;padding:5px 11px;border:1.5px solid var(--border);border-radius:4px;color:var(--t3);font-weight:500">Badge System</span>
+          <span style="font-size:11px;padding:5px 11px;border:1.5px solid var(--border);border-radius:4px;color:var(--t3);font-weight:500">Onboarding Scalability</span>
+          <span style="font-size:11px;padding:5px 11px;border:1.5px solid var(--border);border-radius:4px;color:var(--t3);font-weight:500">Skill-Year Matrix</span>
+          <span style="font-size:11px;padding:5px 11px;border:1.5px solid var(--border);border-radius:4px;color:var(--t3);font-weight:500">Agent Workflow</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="pcard">
+      <div class="pcard-img-wrap">
+        <!-- REPLACE: AVA Banking image -->
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="AVA Banking"/>
+      </div>
+      <div class="pcard-body">
+        <span class="pcard-tag">Banking · Mobile</span><span class="pcard-num">02</span>
+        <div class="pcard-title">AVA Digital Banking<span class="pcard-arrow">↗</span></div>
+        <p class="pcard-desc">Redesigned Farda-Bank's fintech app and responsive mega-club platform. Human-centered engagement features that fuelled explosive growth.</p>
+        <div class="pcard-metrics"><div class="pm"><div class="pm-val">300%+</div><div class="pm-lbl">Customer growth</div></div></div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="pcard">
+      <div class="pcard-img-wrap">
+        <!-- REPLACE: Design System image -->
+        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&q=80" alt="Design Systems"/>
+      </div>
+      <div class="pcard-body">
+        <span class="pcard-tag">SaaS · Design Systems</span><span class="pcard-num">03</span>
+        <div class="pcard-title">Design System Architecture<span class="pcard-arrow">↗</span></div>
+        <p class="pcard-desc">Architected a comprehensive Design System across 17+ client projects, reducing production timelines and enforcing consistency at scale.</p>
+        <div class="pcard-metrics">
+          <div class="pm"><div class="pm-val">30%</div><div class="pm-lbl">Faster production</div></div>
+          <div class="pm"><div class="pm-val">17+</div><div class="pm-lbl">Projects</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parallax break -->
+    <div style="grid-column:span 2">
+      <div class="proj-parallax" id="parallax-proj">
+        <div class="parallax-img" id="pimg-proj">
+          <!-- REPLACE: projects mid-parallax -->
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80" alt="team collaboration"/>
+        </div>
+        <div class="parallax-overlay" style="border-radius:16px">
+          <div class="parallax-text">
+            <blockquote style="font-size:clamp(16px,2.2vw,26px)">"Cross-functional alignment wasn't overhead — it was the work."</blockquote>
+            <cite>From the PONS Case Study</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="pcard">
+      <div class="pcard-img-wrap">
+        <!-- REPLACE: Re-engagement image -->
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="analytics"/>
+      </div>
+      <div class="pcard-body">
+        <span class="pcard-tag">Analytics · Re-engagement</span><span class="pcard-num">04</span>
+        <div class="pcard-title">Re-engagement Flow Redesign<span class="pcard-arrow">↗</span></div>
+        <p class="pcard-desc">Redesigned dormant-user flows using Hotjar and GA4 insights — converting inactive prospects and slashing rage clicks across the board.</p>
+        <div class="pcard-metrics">
+          <div class="pm"><div class="pm-val">60%</div><div class="pm-lbl">Less rage clicks</div></div>
+          <div class="pm"><div class="pm-val">6</div><div class="pm-lbl">Signed contracts</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="pcard">
+      <div class="pcard-img-wrap">
+        <!-- REPLACE: Research image -->
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80" alt="user research"/>
+      </div>
+      <div class="pcard-body">
+        <span class="pcard-tag">Research · UX</span><span class="pcard-num">05</span>
+        <div class="pcard-title">Maxim — 5M User Research<span class="pcard-arrow">↗</span></div>
+        <p class="pcard-desc">Extensive usability studies and cultural adaptation for a product serving 5 million users. Local insights translated into measurable retention improvements.</p>
+        <div class="pcard-metrics"><div class="pm"><div class="pm-val">5M</div><div class="pm-lbl">Users researched</div></div></div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="pcard">
+      <div class="pcard-img-wrap">
+        <!-- REPLACE: Branding image -->
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="brand design"/>
+      </div>
+      <div class="pcard-body">
+        <span class="pcard-tag">Branding · E-commerce</span><span class="pcard-num">06</span>
+        <div class="pcard-title">Brand & E-commerce Design<span class="pcard-arrow">↗</span></div>
+        <p class="pcard-desc">Brand identity and e-commerce UI for Artman Leather plus visual systems for Yasin Pharmacy Holding's three sub-brands.</p>
+        <div class="pcard-metrics">
+          <div class="pm"><div class="pm-val">40%</div><div class="pm-lbl">Sales increase</div></div>
+          <div class="pm"><div class="pm-val">30%</div><div class="pm-lbl">Social engagement</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ EXPERIENCE ══════════════════════════════ -->
+<div class="page" id="page-experience">
+  <div class="exp-hero">
+    <div>
+      <div class="sec-label">Experience</div>
+      <h2 class="sec-h">12 years of<br>intentional craft</h2>
+    </div>
+    <p>From graphic design to leading product design at fintech scale — a career built on curiosity, systems thinking, and measurable impact.</p>
+  </div>
+
+  <div class="elist">
+    <div class="eitem">
+      <div><div class="edate">Jan 2020 – Present</div></div>
+      <div>
+        <div class="erole">Senior Product Designer</div>
+        <div class="eco">RemoteReps</div>
+        <div class="eloc">California, USA · Remote</div>
+        <ul class="edesc">
+          <li>AI-driven features reducing form completion by ~60% and increasing submissions by ~35%.</li>
+          <li>Behavioural analytics (GA4, Hotjar) — 60% fewer rage clicks, 40% lower bounce rate.</li>
+          <li>Design System cutting production timelines by 30% across 17+ projects.</li>
+          <li>Landing pages generating 9 qualified leads/day over 3 months.</li>
+          <li>Mentored junior designers on components, prototyping, and best practices.</li>
+        </ul>
+      </div>
+      <div class="etype">Fintech · SaaS · AI</div>
+    </div>
+    <div class="eitem">
+      <div><div class="edate">Nov 2021 – Nov 2023</div></div>
+      <div>
+        <div class="erole">Senior Product Designer</div>
+        <div class="eco">AVA Digital Banking (Farda-Bank)</div>
+        <div class="eloc">Tehran, Iran</div>
+        <ul class="edesc">
+          <li>Led redesign of Farda-Bank fintech app and responsive mega-club platform.</li>
+          <li>Human-centered improvements contributed to 300%+ customer base expansion.</li>
+          <li>Collaborated to implement new UI standards, increasing user satisfaction.</li>
+        </ul>
+      </div>
+      <div class="etype">Digital Banking</div>
+    </div>
+    <div class="eitem">
+      <div><div class="edate">Jan – Mar 2020</div></div>
+      <div>
+        <div class="erole">UX Designer</div>
+        <div class="eco">Infinit8 (Naxia Game)</div>
+        <div class="eloc">Tehran, Iran</div>
+        <ul class="edesc"><li>Revamped information architecture for game settings in collaboration with UX writers.</li></ul>
+      </div>
+      <div class="etype">Gaming · UX</div>
+    </div>
+    <div class="eitem">
+      <div><div class="edate">Jan 2018 – Jan 2020</div></div>
+      <div>
+        <div class="erole">UX Researcher</div>
+        <div class="eco">Maxim – BunkerMedia</div>
+        <div class="eloc">Tehran, Iran</div>
+        <ul class="edesc">
+          <li>Extensive user research and usability studies for a 5 million user product.</li>
+          <li>Cultural insights adapted features to local needs, improving retention.</li>
+        </ul>
+      </div>
+      <div class="etype">Research</div>
+    </div>
+    <div class="eitem">
+      <div><div class="edate">Oct 2016 – Jan 2018</div></div>
+      <div>
+        <div class="erole">Senior Graphic Designer</div>
+        <div class="eco">Yasin Pharmacy Holding</div>
+        <div class="eloc">Tehran, Iran</div>
+        <ul class="edesc"><li>Visual identities and marketing assets for three sub-brands, +30% social engagement.</li></ul>
+      </div>
+      <div class="etype">Branding</div>
+    </div>
+    <div class="eitem">
+      <div><div class="edate">Sep 2013 – Sep 2016</div></div>
+      <div>
+        <div class="erole">Graphic Designer</div>
+        <div class="eco">Artman Leather Industry</div>
+        <div class="eloc">Tehran, Iran</div>
+        <ul class="edesc"><li>Brand identity and e-commerce UI redesign, increasing online sales by ~40%.</li></ul>
+      </div>
+      <div class="etype">Branding · E-comm</div>
+    </div>
+  </div>
+
+  <!-- Parallax exp -->
+  <div class="exp-parallax" id="parallax-exp">
+    <div class="parallax-img" id="pimg-exp">
+      <!-- REPLACE: experience parallax -->
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80" alt="team"/>
+    </div>
+    <div class="parallax-overlay" style="border-radius:16px">
+      <div class="parallax-text">
+        <blockquote style="font-size:clamp(16px,2.2vw,26px)">"Every role taught me something different — but all of them taught me to listen before I design."</blockquote>
+        <cite>Morteza Ebrahimi</cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="skills-block">
+    <h3>Skills & Tools</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div>
+        <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:14px;font-weight:600">Core Skills</div>
+        <div class="sgrid">
+          <div class="stag">Interaction Design</div><div class="stag">Rapid Prototyping</div>
+          <div class="stag">Design Systems</div><div class="stag">User Research</div>
+          <div class="stag">Info. Architecture</div><div class="stag">Design Thinking</div>
+          <div class="stag">Usability Testing</div><div class="stag">Data Visualization</div>
+          <div class="stag">Cross-func. Collab</div><div class="stag">Mentorship</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:14px;font-weight:600">Tools</div>
+        <div class="sgrid">
+          <div class="stag">Figma</div><div class="stag">Adobe CC</div>
+          <div class="stag">GA4</div><div class="stag">Hotjar</div>
+          <div class="stag">MS Clarity</div><div class="stag">Miro</div>
+          <div class="stag">Notion</div><div class="stag">Jira</div>
+          <div class="stag">HTML / CSS</div><div class="stag">Trello</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin:8px 56px 80px;background:var(--surface);padding:36px 44px;border-radius:12px;border:1.5px solid var(--border);display:grid;grid-template-columns:180px 1fr;gap:24px">
+    <div class="edate">2011 – 2016</div>
+    <div>
+      <div class="erole">B.S. Chemical Engineering</div>
+      <div class="eco">University of Zanjan</div>
+      <p class="edesc" style="margin-top:10px">Analytical background leveraged for data-driven design and systematic problem solving.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ ABOUT ══════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-fullimg">
+    <!-- REPLACE: about hero full-width image -->
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80" alt="Morteza Ebrahimi" style="object-position:center top"/>
+  </div>
+
+  <div class="about-intro-sec">
+    <div>
+      <div class="sec-label" style="margin-bottom:24px">About Me</div>
+      <p class="about-big-text">I'm <mark>Morteza</mark> — a Senior Product Designer who believes great design is invisible until it matters.</p>
+      <p class="about-body-text">With 12+ years of experience across Fintech and SaaS, I've worked at the intersection of business complexity and human simplicity. My engineering background gives me a systematic lens — I don't just design interfaces, I design outcomes.<br><br>Based in Barcelona, I work remotely with global teams, currently at RemoteReps where I lead design for client services and internal product ventures. I care deeply about mentorship, scalable systems, and making data tell stories worth acting on.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn-p" onclick="openModal()">Get in Touch</button>
+        <button class="btn-o" onclick="goTo('projects')">See My Work</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="background:var(--surface);border-radius:12px;border:1.5px solid var(--border);padding:28px 32px">
+        <h4 style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;font-weight:700">Currently</h4>
+        <p style="font-size:15px;font-weight:700">Senior Product Designer</p>
+        <p style="font-size:13px;color:var(--t2);margin-top:2px">RemoteReps · Remote</p>
+      </div>
+      <div style="background:var(--surface);border-radius:12px;border:1.5px solid var(--border);padding:28px 32px">
+        <h4 style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;font-weight:700">Based In</h4>
+        <p style="font-size:15px;font-weight:700">Barcelona, Spain</p>
+        <p style="font-size:13px;color:var(--t2);margin-top:2px">Open to remote worldwide</p>
+      </div>
+      <div style="background:var(--primary);border-radius:12px;padding:28px 32px">
+        <h4 style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pdd);margin-bottom:12px;font-weight:700">Availability</h4>
+        <p style="font-size:15px;font-weight:800;color:var(--inv);display:flex;align-items:center;gap:8px"><span class="dot-g"></span>Open to new projects</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parallax about -->
+  <div class="parallax" id="parallax-about" style="margin-bottom:0">
+    <div class="parallax-img" id="pimg-about">
+      <!-- REPLACE: about parallax -->
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80" alt="workspace"/>
+    </div>
+    <div class="parallax-overlay">
+      <div class="parallax-text">
+        <blockquote>"12 years of turning complexity into clarity — one decision at a time."</blockquote>
+        <cite>Barcelona · Available for remote collaboration</cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-split">
+    <div class="about-split-img">
+      <!-- REPLACE: about split image -->
+      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80" alt="design work"/>
+    </div>
+    <div class="about-split-content">
+      <div class="ablock">
+        <h4>Expertise</h4>
+        <p>Fintech · SaaS · Digital Banking<br>Design Systems · AI-driven UX · Service Design</p>
+      </div>
+      <div class="ablock">
+        <h4>Education</h4>
+        <p>B.S. Chemical Engineering<br><span style="color:var(--t3)">University of Zanjan · 2011–2016</span></p>
+      </div>
+      <div class="ablock">
+        <h4>Tools</h4>
+        <div class="tools-row">
+          <span class="ttag">Figma</span><span class="ttag">Adobe CC</span><span class="ttag">GA4</span>
+          <span class="ttag">Hotjar</span><span class="ttag">MS Clarity</span><span class="ttag">Miro</span>
+          <span class="ttag">Notion</span><span class="ttag">Jira</span><span class="ttag">HTML/CSS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ CASE STUDY MODAL ══════════════════════════════ -->
+<div class="cs-bg" id="cs-bg" onclick="closeCaseStudy(event)">
+  <div class="cs-modal" id="cs-modal">
+    <div class="cs-head">
+      <button class="cs-close" onclick="closeCaseStudyDirect()">✕</button>
+      <div class="cs-eyebrow">Case Study · PONS</div>
+      <div class="cs-title">Turning Overwhelm into Trust</div>
+      <div class="cs-sub">How we transformed a 3,000-profile talent pool into a boutique hiring experience — and scaled trust without breaking it.</div>
+      <div class="cs-tags">
+        <span class="cs-tag">Marketplace UX</span>
+        <span class="cs-tag">Information Architecture</span>
+        <span class="cs-tag">Service Design</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div class="cs-strip">
+        <div class="cs-strip-cell"><div class="cs-strip-label">Role</div><div class="cs-strip-val">Product Designer</div></div>
+        <div class="cs-strip-cell"><div class="cs-strip-label">Platform</div><div class="cs-strip-val">PONS Talent Marketplace</div></div>
+        <div class="cs-strip-cell"><div class="cs-strip-label">Collaborators</div><div class="cs-strip-val">PM & Engineering</div></div>
+      </div>
+      <div class="cs-quote"><p>"They didn't want more options. They wanted someone to tell them: this one. She's the right fit."</p></div>
+      <p class="cs-intro">Business owners coming to PONS weren't lazy or indecisive — they were scared. Scared of wasting money on the wrong hire. Scared of onboarding someone remotely who wouldn't deliver. When they landed on a platform with 3,000+ profiles and no clear signal of who to trust, that fear didn't go away — it got louder. The symptom was low conversion. The real problem was a lack of trust, and an experience that accidentally made things worse by throwing too many choices at people who were already anxious about choosing.</p>
+
+      <!-- CH01 -->
+      <div class="cs-ch">
+        <div class="cs-ch-head">
+          <span class="cs-ch-badge c1">CHALLENGE 01</span>
+          <span class="cs-ch-title">From Search Engine to Curated Marketplace</span>
+        </div>
+        <p class="cs-ch-intro">PONS had supply. PONS had demand. But the bridge between them was broken. Clients were arriving, browsing briefly, and leaving without hiring. The team spent two full days manually assembling shortlists that still felt untrustworthy — because there was no visible quality signal on any profile.</p>
+        <div class="cs-find-label">Research & Discovery</div>
+        <div class="cs-findings">
+          <div class="cs-find"><span class="cs-find-num">Finding 01</span><p><strong>Choice overload was the #1 drop-off driver.</strong> Clients who browsed more than 20 profiles almost never converted. The more they saw, the less they trusted any single option.</p></div>
+          <div class="cs-find"><span class="cs-find-num">Finding 02</span><p><strong>Verified meant nothing without context.</strong> A basic ID check wasn't reassuring — it just confirmed the person existed. Clients wanted to know: can this person do the job, and has someone I trust already confirmed that?</p></div>
+          <div class="cs-find"><span class="cs-find-num">Finding 03</span><p><strong>The team's expert filtering was invisible.</strong> Hours of manual shortlisting were happening behind the scenes, but clients had no idea — they assumed they were looking at a raw, unfiltered list.</p></div>
+          <div class="cs-find"><span class="cs-find-num">Finding 04</span><p><strong>SDR roles carried the highest anxiety.</strong> Sales hires are performance-sensitive. A bad SDR doesn't just cost money — they damage pipeline momentum. This segment needed the most reassurance before committing.</p></div>
+        </div>
+        <div class="cs-find-label">Design Decisions</div>
+        <div class="cs-decs">
+          <div class="cs-dec">
+            <div class="cs-dec-title">01 · The Skill-Year Matrix — Precision Over Labels</div>
+            <p>The existing tagging system used broad labels like "Sales Representative." These told clients almost nothing about fit. In collaboration with the PM and engineers, I redesigned profile architecture around specific competencies and years of hands-on experience:</p>
+            <div class="cs-code">Cold Calling → 4 years<br>CRM Management (HubSpot) → 2 years<br>Inbound Lead Qualification → 3 years</div>
+            <p>For clients: fast scannable signal of depth. For engineering: structured data that made precise automated shortlisting possible for the first time. A progressive disclosure pattern kept rep completion rates high without adding friction.</p>
+          </div>
+          <div class="cs-dec">
+            <div class="cs-dec-title">02 · The Badge System — Trust You Can See</div>
+            <p style="margin-bottom:10px">A two-tier trust system that made quality visible at every touchpoint — shaped by PM conversations and engineering input on what verification workflows were realistically buildable.</p>
+            <div class="cs-badge-row">
+              <div class="cs-badge-box"><div class="cs-badge-name">Verified Badge</div><div class="cs-badge-desc">Identity confirmed, profile complete, background check passed.</div></div>
+              <div class="cs-badge-box highlight"><div class="cs-badge-name lime">Vetted Badge</div><div class="cs-badge-desc">Personally interviewed by PONS, performance claims validated, communication style assessed.</div></div>
+            </div>
+            <p style="margin-top:10px">The design principle was <em>earned visibility</em>. Vetted profiles surfaced higher in shortlists, carried a distinct visual treatment, and were the only ones eligible for the premium agent workflow. For clients, the Vetted badge acted as a proxy for a trusted referral.</p>
+          </div>
+          <div class="cs-dec">
+            <div class="cs-dec-title">03 · The Dedicated Agent Workflow — Removing the Decision Entirely</div>
+            <p style="margin-bottom:8px">For clients who needed the highest support — first-time remote hirers or founders stretched too thin — instead of browsing profiles, the client submits a structured brief: role type, required tools, team pace, culture notes. A PONS agent then returns exactly five Vetted candidates, each with a personal match rationale.</p>
+            <p>Engineers initially pushed back on scope. Working with the PM, we prioritized a lightweight first version — a simple brief form feeding into the existing agent workflow, with a richer dashboard scoped to a later sprint. It shipped faster and still solved the core problem completely.</p>
+            <div class="cs-aside-quote"><p>"Sometimes the best design is removing the interface entirely. The most anxious users didn't need a better search — they needed someone to take the wheel."</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CH02 -->
+      <div class="cs-ch">
+        <div class="cs-ch-head">
+          <span class="cs-ch-badge c2">CHALLENGE 02</span>
+          <span class="cs-ch-title">Scaling Trust Without Breaking It</span>
+        </div>
+        <p class="cs-ch-intro">The Vetted badge worked — clients trusted it, conversion improved. But success created its own problem. Every Vetted badge required a live interview and manual data validation. Within weeks of launch, demand outpaced capacity: a six-week backlog of pending interviews. The platform was caught in a paradox: <em>the thing making us credible was also making us look empty.</em></p>
+        <div class="cs-find-label">Two Equally Dangerous Failure Modes</div>
+        <div class="cs-fail-modes">
+          <div class="cs-fail"><h5>Show too little</h5><p>Keep unvetted reps hidden → talent pool looks sparse → clients assume the platform isn't worth their time and leave.</p></div>
+          <div class="cs-fail"><h5>Show too much</h5><p>Let everyone in without checks → clients meet underqualified reps → the boutique reputation unravels quietly but fast.</p></div>
+        </div>
+        <div class="cs-find-label">Options Considered</div>
+        <div class="cs-options">
+          <div class="cs-opt out"><span class="cs-opt-badge out">RULED OUT</span><div><h5>Option 1 — Automate Everything</h5><p>Use AI to screen video introductions at scale. Ruled out — AI wasn't reliable enough to assess personality depth, fluency under pressure, or authentic communication style.</p></div></div>
+          <div class="cs-opt out"><span class="cs-opt-badge out">RULED OUT</span><div><h5>Option 2 — The Waiting Room</h5><p>Keep all reps hidden until fully vetted. Ruled out — a platform that looks half-empty tells a story no badge can fix. New clients wouldn't wait to discover the pool was deep.</p></div></div>
+          <div class="cs-opt selected"><span class="cs-opt-badge sel">SELECTED</span><div><h5>Option 3 — The Two-Tier System</h5><p>Let reps go live with a Verified badge while awaiting their Vetted interview. Kept the pool visible and active, while badge distinction preserved the quality signal.</p></div></div>
+        </div>
+        <div class="cs-find-label">Protecting Quality Behind the Scenes</div>
+        <p style="font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:10px">I designed an <strong>Admin-Only "Completed Profile" filter</strong> — invisible to clients, but critical for the recruitment team. Every rep was required to submit a video introduction before their profile became visible. The team reviewed these internally to fast-track the strongest candidates into the interview queue — a hidden quality layer that kept the public experience clean.</p>
+        <p style="font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:16px">While the backlog was being cleared, the <strong>Dedicated Agent service was offered for free</strong> during this transition period — absorbing uncertainty and ensuring every client experience felt intentional.</p>
+        <div class="cs-tradeoff">
+          <h5>The Tradeoff Knowingly Accepted</h5>
+          <p>By making Verified-but-not-yet-Vetted reps visible, we accepted a real risk: some clients would connect with reps who didn't yet meet our full boutique standard. That was a conscious call, not an oversight. The alternative — a platform that looked empty — carried a higher long-term risk. Owning that tradeoff clearly also made internal alignment significantly smoother.</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="cs-find-label" style="margin-top:32px">Results</div>
+      <div class="cs-results">
+        <div class="cs-result"><div class="cs-result-val">+60%</div><div class="cs-result-lbl">Client-to-hire ratio</div></div>
+        <div class="cs-result"><div class="cs-result-val">2d → 1h</div><div class="cs-result-lbl">Shortlist generation time</div></div>
+        <div class="cs-result"><div class="cs-result-val">Significant Uplift</div><div class="cs-result-lbl">Repeat purchase rate</div></div>
+        <div class="cs-result"><div class="cs-result-val">Meaningfully Higher</div><div class="cs-result-lbl">Agent service conversion</div></div>
+      </div>
+      <p class="cs-results-note">Clients who experienced the hands-on agent service during the transition period became some of the most loyal returning buyers. The free period proved the value of the premium service to exactly the clients who needed convincing most.</p>
+
+      <!-- Lessons -->
+      <div class="cs-find-label">Lessons Learned</div>
+      <div class="cs-lessons">
+        <div class="cs-lesson"><span class="cs-lesson-dot"></span><p><strong>Trust is a design material.</strong> The biggest UX problem wasn't navigation or search — it was anxiety. Designing for trust meant making quality legible, expert judgment visible, and sometimes removing choice altogether.</p></div>
+        <div class="cs-lesson"><span class="cs-lesson-dot"></span><p><strong>Collaboration shapes better constraints.</strong> Some of the strongest design decisions came directly from PM and engineering conversations. Cross-functional alignment wasn't overhead — it was the work.</p></div>
+        <div class="cs-lesson"><span class="cs-lesson-dot"></span><p><strong>The best solutions sometimes live outside the screen.</strong> The dedicated agent workflow was a service design decision as much as a product one. Some users needed a human layer — not a better UI.</p></div>
+        <div class="cs-lesson"><span class="cs-lesson-dot"></span><p><strong>Own your tradeoffs.</strong> Design maturity means knowing what you're giving up, not just what you're gaining. Making the two-tier decision explicitly built more internal trust than any technically perfect solution would have.</p></div>
+        <div class="cs-lesson"><span class="cs-lesson-dot"></span><p><strong>Structure unlocks scale.</strong> The Skill-Year Matrix compounded across filtering, shortlisting, client confidence, and team efficiency — all at once.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-top">
+      <div><div class="modal-title">Let's Talk</div><div class="modal-sub">Open to new projects, collaborations, and good conversations.</div></div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="clinks">
+      <a class="clink" href="mailto:e.morteza@gmail.com"><div class="clink-icon">✉</div><div><div class="clink-label">Email</div><div class="clink-val">e.morteza@gmail.com</div></div></a>
+      <a class="clink" href="https://linkedin.com/in/emorteza" target="_blank"><div class="clink-icon" style="font-size:13px">in</div><div><div class="clink-label">LinkedIn</div><div class="clink-val">linkedin.com/in/emorteza</div></div></a>
+      <a class="clink" href="https://mortzart.com" target="_blank"><div class="clink-icon">↗</div><div><div class="clink-label">Website</div><div class="clink-val">MortzArt.com</div></div></a>
+      <a class="clink" href="tel:+34614014996"><div class="clink-icon">☎</div><div><div class="clink-label">Phone</div><div class="clink-val">+34 614 014 996</div></div></a>
+    </div>
+    <div class="modal-div"></div>
+    <div class="avail"><span class="dot-g"></span>Currently available for freelance &amp; full-time roles</div>
+  </div>
+</div>
+
+<footer>
+  <span style="font-size:13px;color:var(--t3);font-weight:500">© 2025 Morteza Ebrahimi</span>
+  <div style="display:flex;gap:20px">
+    <a href="mailto:e.morteza@gmail.com" class="fl">Email</a>
+    <a href="https://linkedin.com/in/emorteza" target="_blank" class="fl">LinkedIn</a>
+    <a href="https://mortzart.com" target="_blank" class="fl">MortzArt.com</a>
+  </div>
+</footer>
+
+<script>
+/* ── PAGE ROUTING ── */
+const pages=['home','projects','experience','about'];
+function goTo(id){
+  pages.forEach(p=>document.getElementById('page-'+p).classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+}
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
+  updateParallax();
+});
+
+/* ── PARALLAX ── */
+const parallaxMap=[
+  {wrap:'parallax-home', img:'pimg-home'},
+  {wrap:'parallax-proj', img:'pimg-proj'},
+  {wrap:'parallax-exp',  img:'pimg-exp'},
+  {wrap:'parallax-about',img:'pimg-about'},
+];
+function updateParallax(){
+  parallaxMap.forEach(({wrap,img})=>{
+    const el=document.getElementById(wrap);
+    const im=document.getElementById(img);
+    if(!el||!im) return;
+    const rect=el.getBoundingClientRect();
+    const vh=window.innerHeight;
+    if(rect.bottom<0||rect.top>vh) return;
+    const progress=(vh-rect.top)/(vh+rect.height);
+    const shift=(progress-.5)*60;
+    im.style.transform=`translateY(${shift}px)`;
+  });
+}
+updateParallax();
+
+/* ── HERO IMAGE SCALE ON LOAD ── */
+window.addEventListener('load',()=>{
+  const hi=document.getElementById('hero-img');
+  if(hi) hi.style.transform='scale(1)';
+});
+
+/* ── CASE STUDY ── */
+function openCaseStudy(){
+  const bg=document.getElementById('cs-bg');
+  bg.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCaseStudyDirect(){
+  document.getElementById('cs-bg').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeCaseStudy(e){if(e.target===document.getElementById('cs-bg'))closeCaseStudyDirect();}
+
+/* ── CONTACT MODAL ── */
+function openModal(){document.getElementById('modal-bg').classList.add('open');document.body.style.overflow='hidden';}
+function closeModalDirect(){document.getElementById('modal-bg').classList.remove('open');document.body.style.overflow='';}
+function closeModal(e){if(e.target===document.getElementById('modal-bg'))closeModalDirect();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCaseStudyDirect();closeModalDirect();}});
+
+/* ── ENTRANCE ANIMATIONS ── */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.pcard,.eitem,.wcard,.kpi').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(24px)';
+  el.style.transition='opacity .5s ease, transform .5s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>

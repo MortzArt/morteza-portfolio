@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Creative Fabrica Case Study — Morteza Ebrahimi</title>
+<link rel="icon" type="image/png" href="../favicon.png"/>
+<link rel="stylesheet" href="../style.css"/>
+<link rel="stylesheet" href="cf-style.css"/>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <a class="nav-name name-reveal" href="/" data-short=".ME" data-full="Morteza Ebrahimi"><span class="name-typed">.ME</span></a>
+    <ul class="nav-links">
+      <li><a href="/projects" class="active">Work</a></li>
+      <li><a href="/about">About <span style="color:#E0D100">.</span>ME</a></li>
+      <li><a href="/experience">Experience</a></li>
+    </ul>
+  </nav>
+
+  <button class="cs-back" onclick="location.href='/projects'">← Back to Projects</button>
+
+  <!-- HERO -->
+  <div class="cs-hero-section">
+    <div class="cs-eyebrow">Case Study · Creative Fabrica</div>
+    <div class="cs-title">Redesigning the Search Experience</div>
+    <div class="cs-sub">A UX-driven approach to reimagining how millions of designers and crafters discover digital assets — through better search, smarter filters, and data-informed design decisions.</div>
+    <div class="cs-tags">
+      <span class="cs-tag">Search UX</span>
+      <span class="cs-tag">Competitor Analysis</span>
+      <span class="cs-tag">Heuristic Evaluation</span>
+      <span class="cs-tag">Wireframing</span>
+    </div>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <div class="cs-hero-img">
+    <img src="images/image 11.jpg" alt="Creative Fabrica search interface"/>
+  </div>
+
+  <!-- META STRIP -->
+  <div class="cs-strip">
+    <div class="cs-strip-cell"><div class="cs-strip-label">Role</div><div class="cs-strip-val">Product Designer</div></div>
+    <div class="cs-strip-cell"><div class="cs-strip-label">Platform</div><div class="cs-strip-val">Creative Fabrica</div></div>
+    <div class="cs-strip-cell"><div class="cs-strip-label">Date</div><div class="cs-strip-val">August 2023</div></div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="cs-quote"><p>"The goal: develop a novel search engine aimed at elevating user engagement and satisfaction by revolutionizing the search experience on Creative Fabrica."</p></div>
+
+  <!-- INTRO -->
+  <p class="cs-intro">Creative Fabrica is a marketplace for design assets — fonts, graphics, crafts, embroidery, and more. While the platform already used Algolia for search, the experience around it had room for improvement. I set out to analyze the current search functionality, benchmark against competitors, conduct user research, and design a search page that better serves both users and business goals.</p>
+
+  <!-- ═══════ SECTION: GOALS & ASSUMPTIONS ═══════ -->
+  <div class="cs-ch">
+    <div class="cs-ch-head">
+      <span class="cs-ch-badge c1">PHASE 01</span>
+      <span class="cs-ch-title">Define Goals & Assumptions</span>
+    </div>
+    <p class="cs-ch-intro">Due to the lack of specific user data and restricted access to business goals, objectives, and stakeholder input, my approach focused on Heuristic-Evaluation principles and a comprehensive Competitor analysis.</p>
+
+    <div class="cs-find-label">User & Business Needs</div>
+    <p style="font-size:14px;color:var(--text);line-height:1.8;margin-bottom:20px">A successful search feature must balance user needs and corporate goals. I mapped these across both perspectives to identify what needed improvement:</p>
+
+    <div class="cf-perspectives">
+      <div class="cf-persp-col">
+        <h4 class="cf-persp-title">User Perspective</h4>
+        <div class="cf-persp-items">
+          <div class="cf-persp-item"><span class="cf-persp-name">Relevance and Accuracy</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Speed and Performance</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Ease of Use</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Predictive Suggestions</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Filters and Facets</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Mobile-Friendly Design</span><span class="cf-persp-tags"><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Search Query Feedback</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Search History & Saved Searches</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+        </div>
+      </div>
+      <div class="cf-persp-col">
+        <h4 class="cf-persp-title">Business Objectives</h4>
+        <div class="cf-persp-items">
+          <div class="cf-persp-item"><span class="cf-persp-name">Conversion and Revenue</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">User Engagement</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Promotion and Upselling</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Data Collection & Insights</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Personalization</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">SEO and Organic Traffic</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Competitive Advantage</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+          <div class="cf-persp-item"><span class="cf-persp-name">Ad Monetization</span><span class="cf-persp-tags"><span class="cf-ptag core">Search engine core</span><span class="cf-ptag ui">UI</span><span class="cf-ptag ux">UX</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION: EXISTING SEARCH ANALYSIS ═══════ -->
+  <div class="cs-ch">
+    <div class="cs-ch-head">
+      <span class="cs-ch-badge c2">PHASE 02</span>
+      <span class="cs-ch-title">Analyze Existing Search</span>
+    </div>
+    <p class="cs-ch-intro">Creative Fabrica's search is powered by Algolia — a strong foundation with advanced filtering capabilities. I examined both the desktop and mobile experiences, along with the technology stack powering the search.</p>
+
+    <div class="cf-screenshots">
+      <div class="cf-screenshot">
+        <img src="images/image 11.jpg" alt="Creative Fabrica desktop search"/>
+        <span class="cf-screenshot-label">Desktop — Search & Filter</span>
+      </div>
+      <div class="cf-screenshot-pair">
+        <div class="cf-screenshot-sm">
+          <img src="images/C2D63287-BA2D-43DC-96CB-3FA3AA0DD0C2.jpg" alt="Creative Fabrica mobile main view"/>
+          <span class="cf-screenshot-label">Mobile — Main view</span>
+        </div>
+        <div class="cf-screenshot-sm">
+          <img src="images/5B08D420-3785-4967-A2DC-C23E5136369F.jpg" alt="Creative Fabrica mobile search"/>
+          <span class="cf-screenshot-label">Mobile — Query search</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-find-label">Tech Stack Insight</div>
+    <div class="cs-find" style="margin-bottom:28px">
+      <span class="cs-find-num">Algolia 3.33.0</span>
+      <p>The search engine powering Creative Fabrica excels in providing quick and accurate results. It also gives businesses powerful statistics and customization capabilities to optimize the search experience.</p>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION: SURVEY ═══════ -->
+  <div class="cs-ch">
+    <div class="cs-ch-head">
+      <span class="cs-ch-badge c1">PHASE 03</span>
+      <span class="cs-ch-title">Survey Research</span>
+    </div>
+    <p class="cs-ch-intro">I distributed a survey to designers to understand search habits and satisfaction levels. While the sample size was small, the responses revealed clear patterns about pain points and expectations.</p>
+
+    <!-- Survey Round 1 -->
+    <div class="cs-find-label">Round 1 — General Usage</div>
+    <div class="cf-survey-grid">
+      <div class="cf-survey-card">
+        <div class="cf-survey-q">How frequently do you use search engines to find design assets?</div>
+        <div class="cf-chart-row">
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Very Frequently</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:75%"></div></div>
+            <div class="cf-bar-val">75%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Frequently</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:25%"></div></div>
+            <div class="cf-bar-val">25%</div>
+          </div>
+        </div>
+      </div>
+      <div class="cf-survey-card">
+        <div class="cf-survey-q">Satisfaction with relevance and accuracy of search results?</div>
+        <div class="cf-chart-row">
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Very Satisfied</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:10%"></div></div>
+            <div class="cf-bar-val">10%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Satisfied</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:35%"></div></div>
+            <div class="cf-bar-val">35%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Neutral</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent3" style="width:40%"></div></div>
+            <div class="cf-bar-val">40%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Dissatisfied</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:15%"></div></div>
+            <div class="cf-bar-val">15%</div>
+          </div>
+        </div>
+      </div>
+      <div class="cf-survey-card">
+        <div class="cf-survey-q">Compared to other platforms, user-friendliness rating?</div>
+        <div class="cf-chart-row">
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">About the Same</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent3" style="width:55%"></div></div>
+            <div class="cf-bar-val">55%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Somewhat Better</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:30%"></div></div>
+            <div class="cf-bar-val">30%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Somewhat Worse</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:15%"></div></div>
+            <div class="cf-bar-val">15%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cf-survey-card" style="margin-top:16px;margin-bottom:28px">
+      <div class="cf-survey-q">What features would you like improved or added?</div>
+      <div class="cf-user-quotes">
+        <span class="cf-user-quote">"Different filtering options"</span>
+        <span class="cf-user-quote">"Free filter doesn't exist when searching specific items"</span>
+        <span class="cf-user-quote">"Color filtering"</span>
+      </div>
+    </div>
+
+    <!-- Survey Round 2 -->
+    <div class="cs-find-label">Round 2 — Follow-up (Task-based)</div>
+    <div class="cf-survey-grid">
+      <div class="cf-survey-card">
+        <div class="cf-survey-q">How easy was it to find the specific design assets?</div>
+        <div class="cf-chart-row">
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Very Difficult</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:20%"></div></div>
+            <div class="cf-bar-val">20%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Somewhat Difficult</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:40%"></div></div>
+            <div class="cf-bar-val">40%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Neutral</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent3" style="width:20%"></div></div>
+            <div class="cf-bar-val">20%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Somewhat Easy</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:20%"></div></div>
+            <div class="cf-bar-val">20%</div>
+          </div>
+        </div>
+      </div>
+      <div class="cf-survey-card">
+        <div class="cf-survey-q">How relevant were search results to your query?</div>
+        <div class="cf-chart-row">
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Somewhat Relevant</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:70%"></div></div>
+            <div class="cf-bar-val">70%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Quite Relevant</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent3" style="width:20%"></div></div>
+            <div class="cf-bar-val">20%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Very Relevant</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:10%"></div></div>
+            <div class="cf-bar-val">10%</div>
+          </div>
+        </div>
+      </div>
+      <div class="cf-survey-card">
+        <div class="cf-survey-q">Effectiveness of filtering/sorting options?</div>
+        <div class="cf-chart-row">
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Didn't use any</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent3" style="width:25%"></div></div>
+            <div class="cf-bar-val">25%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Not effective</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill accent2" style="width:25%"></div></div>
+            <div class="cf-bar-val">25%</div>
+          </div>
+          <div class="cf-chart-bar-wrap">
+            <div class="cf-bar-label">Somewhat effective</div>
+            <div class="cf-bar-track"><div class="cf-bar-fill" style="width:50%"></div></div>
+            <div class="cf-bar-val">50%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION: COMPETITOR ANALYSIS ═══════ -->
+  <div class="cs-ch">
+    <div class="cs-ch-head">
+      <span class="cs-ch-badge c2">PHASE 04</span>
+      <span class="cs-ch-title">Competitor Analysis</span>
+    </div>
+    <p class="cs-ch-intro">I compared Creative Fabrica's search features against seven competitors to identify gaps and opportunities. Shutterstock, Freepik, and Envato Elements stood out for their exceptional usability and search result quality.</p>
+
+    <div class="cs-find-label">Feature Comparison</div>
+    <div class="cf-comp-table-wrap">
+      <table class="cf-comp-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Auto-suggest</th>
+            <th>Filters</th>
+            <th>Advanced</th>
+            <th>Mobile</th>
+            <th>AI Search</th>
+            <th>Visual</th>
+            <th>Error Handling</th>
+            <th>Personalization</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Creative Fabrica</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td></tr>
+          <tr><td>Envato Elements</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td></tr>
+          <tr><td>Design Bundles</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="y">✓</td><td class="n">✗</td></tr>
+          <tr><td>Creativemarket</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td></tr>
+          <tr><td>Freepik</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td></tr>
+          <tr><td>Shutterstock</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cs-find-label">Key Takeaways from Best-in-Class</div>
+    <div class="cs-findings">
+      <div class="cs-find"><span class="cs-find-num">01</span><p><strong>Strategic Search Placement</strong> — Top-center search bar accessible even during scrolling</p></div>
+      <div class="cs-find"><span class="cs-find-num">02</span><p><strong>Seamless Filter Access</strong> — Fixed position with internal scrolling for effortless filter access</p></div>
+      <div class="cs-find"><span class="cs-find-num">03</span><p><strong>Contemporary Aesthetics</strong> — Modern, trendsetting design language throughout</p></div>
+      <div class="cs-find"><span class="cs-find-num">04</span><p><strong>Image-Based Search</strong> — Search-by-image to enhance discovery capabilities</p></div>
+      <div class="cs-find"><span class="cs-find-num">05</span><p><strong>Enhanced Query Suggestions</strong> — Related queries to help users refine their search scope</p></div>
+      <div class="cs-find"><span class="cs-find-num">06</span><p><strong>Adaptive Mobile Design</strong> — Responsive and optimized for mobile-first users</p></div>
+    </div>
+
+    <!-- CF vs Competitors assessment -->
+    <div class="cs-find-label">Creative Fabrica Assessment</div>
+    <div class="cf-assessment">
+      <div class="cf-assess-col">
+        <h4 class="cf-persp-title">User Perspective</h4>
+        <div class="cf-assess-items">
+          <div class="cf-assess-item"><span class="cf-status good">Good</span>Relevance and Accuracy</div>
+          <div class="cf-assess-item"><span class="cf-status good">Good</span>Speed and Performance</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>Ease of Use</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>Predictive Suggestions</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>Filters and Facets</div>
+          <div class="cf-assess-item"><span class="cf-status bad">Not Good</span>Mobile-Friendly Design</div>
+          <div class="cf-assess-item"><span class="cf-status bad">Not Good</span>Search Query Feedback</div>
+        </div>
+      </div>
+      <div class="cf-assess-col">
+        <h4 class="cf-persp-title">Business Perspective</h4>
+        <div class="cf-assess-items">
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>Conversion and Revenue</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>User Engagement</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>Promotion and Upselling</div>
+          <div class="cf-assess-item"><span class="cf-status neutral">No Data</span>Data Collection & Insights</div>
+          <div class="cf-assess-item"><span class="cf-status neutral">No Data</span>Personalization</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>SEO and Organic Traffic</div>
+          <div class="cf-assess-item"><span class="cf-status improve">Improve</span>Competitive Advantage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION: DESIGN ═══════ -->
+  <div class="cs-ch">
+    <div class="cs-ch-head">
+      <span class="cs-ch-badge c1">PHASE 05</span>
+      <span class="cs-ch-title">Design the New Search Page</span>
+    </div>
+    <p class="cs-ch-intro">Based on research and competitor benchmarking, I outlined improvements across Product, UX, and UI — then translated them into wireframes showing tangible design solutions.</p>
+
+    <div class="cs-find-label">Improvement Roadmap</div>
+    <div class="cf-roadmap">
+      <div class="cf-roadmap-col">
+        <h5 class="cf-roadmap-title">Product</h5>
+        <div class="cf-roadmap-items">
+          <div class="cf-roadmap-item">Prominent internal services</div>
+          <div class="cf-roadmap-item">Enhanced query suggestions</div>
+          <div class="cf-roadmap-item">Image-based search</div>
+          <div class="cf-roadmap-item">Suggestions on no-result page</div>
+          <div class="cf-roadmap-item">Marketing automation banners</div>
+          <div class="cf-roadmap-item">Email automation via search query</div>
+        </div>
+      </div>
+      <div class="cf-roadmap-col">
+        <h5 class="cf-roadmap-title">UX</h5>
+        <div class="cf-roadmap-items">
+          <div class="cf-roadmap-item">Strategic search placement</div>
+          <div class="cf-roadmap-item">Seamless filter access</div>
+          <div class="cf-roadmap-item">Adaptive mobile design</div>
+          <div class="cf-roadmap-item">Efficient quick actions on results</div>
+        </div>
+      </div>
+      <div class="cf-roadmap-col">
+        <h5 class="cf-roadmap-title">UI</h5>
+        <div class="cf-roadmap-items">
+          <div class="cf-roadmap-item">Contemporary aesthetics</div>
+          <div class="cf-roadmap-item">Engaging visual filters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-find-label">Wireframes</div>
+
+    <!-- Wireframe 1: First Look -->
+    <div class="cf-wireframe-block">
+      <div class="cf-wireframe-img">
+        <img src="images/image 35.jpg" alt="Wireframe — First Look with filters expanded"/>
+      </div>
+      <div class="cf-wireframe-text">
+        <h5>First Look</h5>
+        <p>Integrated an image-based search feature and restructured the page hierarchy. Suggestions and primary categories are placed directly beneath the search input. Enhanced result card design with refined hover states. The filtering section accommodates categorized content with new file type and color filters.</p>
+      </div>
+    </div>
+
+    <!-- Wireframe 2: Collapsed Filters -->
+    <div class="cf-wireframe-block">
+      <div class="cf-wireframe-img">
+        <img src="images/image 38.jpg" alt="Wireframe — Collapsed filters view"/>
+      </div>
+      <div class="cf-wireframe-text">
+        <h5>Collapsed Filters</h5>
+        <p>A collapsible filter section offers users a more spacious browsing experience, enabling them to explore results with greater ease while still having quick access to filter controls when needed.</p>
+      </div>
+    </div>
+
+    <!-- Wireframe 3: Query Suggestions -->
+    <div class="cf-wireframe-block">
+      <div class="cf-wireframe-img">
+        <img src="images/image 39.jpg" alt="Wireframe — Query among the results"/>
+      </div>
+      <div class="cf-wireframe-text">
+        <h5>Query Among Results</h5>
+        <p>Incorporating categories and file types into suggested results provides users with valuable insights, aiding in anticipating their navigation path more effectively and narrowing down results faster.</p>
+      </div>
+    </div>
+
+    <!-- Wireframe 4: Fixed positioning -->
+    <div class="cf-wireframe-block">
+      <div class="cf-wireframe-img">
+        <img src="images/image 37.jpg" alt="Wireframe — Filter and search bar fix positioning"/>
+      </div>
+      <div class="cf-wireframe-text">
+        <h5>Fixed Search & Filters</h5>
+        <p>Stabilizing the search bar and ensuring accessible filters during scrolling simplifies the process of modifying queries and adjusting filters, resulting in a more user-friendly experience throughout long browsing sessions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION: EXPECTATIONS & METRICS ═══════ -->
+  <div class="cs-find-label" style="margin-top:48px">Expected Outcomes</div>
+  <div class="cs-results">
+    <div class="cs-result"><div class="cs-result-val">↑</div><div class="cs-result-lbl">User Engagement</div></div>
+    <div class="cs-result"><div class="cs-result-val">↑</div><div class="cs-result-lbl">Conversion Rate</div></div>
+    <div class="cs-result"><div class="cs-result-val">↓</div><div class="cs-result-lbl">Time to Product</div></div>
+    <div class="cs-result"><div class="cs-result-val">↑</div><div class="cs-result-lbl">User Retention</div></div>
+  </div>
+
+  <!-- Measurement Metrics -->
+  <div class="cs-find-label">Measurement Metrics</div>
+  <div class="cs-decs" style="margin-bottom:32px">
+    <div class="cs-dec">
+      <div class="cs-dec-title">01 · Improve Engagement</div>
+      <p>Through the augmentation of user experience and the introduction of innovative features, we anticipate a reduction in users' rapid exits from the website. This enhancement is expected to encourage prolonged navigation within the platform. Furthermore, effective error handling and personalized recommendations are projected to guide users towards exploring diverse pages across the website.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">02 · Improve Conversion Rate</div>
+      <p>Through the enhancement of search results, the seamless discovery of desired products by users becomes more attainable. Furthermore, the strategic promotion of services and targeted products holds the potential to catalyze an improvement in the conversion rate.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">03 · Improve Time Path in Buy Journey</div>
+      <p>An intuitive and user-friendly design, coupled with desirable features, can expedite users in locating their requirements efficiently. This, in turn, has the potential to amplify the view count of individual product pages.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">04 · Improve Retention</div>
+      <p>When a search engine establishes itself as superior to its competitors, it's only logical that users will instinctively return to the platform when seeking new products.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">05 · Increase Revenue</div>
+      <p>Achieving an above-average success rate for users, coupled with increased revenue through upselling and improved conversion rates, can open up the possibility of incorporating both internal and external Ad Monetization on the search result page.</p>
+    </div>
+  </div>
+
+  <!-- Measure Success -->
+  <div class="cs-find-label">Measure Success</div>
+  <div class="cs-decs" style="margin-bottom:32px">
+    <div class="cs-dec">
+      <div class="cs-dec-title">01 · Engagement</div>
+      <p>It is difficult to provide an exact percentage for how much enhancing the search engine can affect engagement improvement for Creative Fabrica, as it depends on various factors such as the current state of the search engine, the extent of the improvements made, and the preferences of the user base. However, it is safe to say that improving the search engine can have a significant impact on engagement and user satisfaction. A study by Econsultancy found that 30% of website visitors use the search function, and those who use search are more likely to convert than those who do not. By improving the search functionality, Creative Fabrica can make it easier for users to find what they are looking for and increase the likelihood of conversion. Additionally, a study by Forrester found that companies that offer personalized experiences can see a 5–15% increase in revenue. By offering a personalized search experience, Creative Fabrica can potentially see a similar increase in revenue. It is important to track engagement metrics such as user retention, time spent on site, and conversion rates before and after implementing improvements to the search engine to measure the impact of the changes accurately.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">02 · Path Time</div>
+      <p>Improving the time it takes for a user to navigate from searching a query to opening a product single page can also have a significant impact on engagement and conversion rates. One way to improve this process is by optimizing the website's loading speed. This can be achieved through a variety of methods, such as compressing images, minimizing the use of external scripts, and optimizing the website's code. Another way to improve the user's journey is by providing relevant and accurate search results. This can be achieved by implementing the suggestions mentioned earlier, such as a "Did you mean?" feature and advanced filtering options. Additionally, providing clear and concise product descriptions can help users find what they are looking for quickly and easily. By improving the user's journey from search query to product page, Creative Fabrica can increase engagement and conversion rates.</p>
+      <p style="margin-top:12px">There is no universally accepted benchmark for how much improvement in time-to-goal is considered acceptable, as it can vary depending on the industry, website, and user expectations. However, a general rule of thumb is that reducing the time it takes for a user to achieve their goal on a website by 50% or more is considered a significant improvement. For example, if it currently takes a user 10 seconds to navigate from searching a query to opening a product single page, reducing that time to 5 seconds or less would be considered a significant improvement. However, it's important to keep in mind that what is considered an acceptable improvement can also depend on the specific goals and objectives of the website and the target audience's expectations.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">03 · Bounce Rate, Time on Site, and Conversion Rate</div>
+      <p>Ultimately, it's important to track and analyze user behavior metrics, such as bounce rates, time on site, and conversion rates, to determine how website improvements are affecting user engagement and satisfaction. By continuously monitoring and optimizing the website's user experience, it's possible to achieve significant improvements in time-to-goal and other key metrics.</p>
+    </div>
+    <div class="cs-dec">
+      <div class="cs-dec-title">04 · Direct View and Organic View</div>
+      <p>While improving the website's internal search engine may not be a direct way to improve its organic view, it can have a positive impact on user engagement and indirectly contribute to better rankings in search engine results pages.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2025 Morteza Ebrahimi</span>
+    <div style="display:flex;gap:20px">
+      <a href="mailto:e.morteza@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/emorteza" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+</div>
+<script src="../main.js"></script>
+</body>
+</html>

@@ -34,6 +34,28 @@
   });
 })();
 
+/* ── HAMBURGER MENU ── */
+(() => {
+  const btn = document.querySelector('.hamburger');
+  const links = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+
+  btn.addEventListener('click', () => {
+    const open = btn.classList.toggle('open');
+    links.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  });
+
+  // Close menu when a link is clicked
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      btn.classList.remove('open');
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    });
+  });
+})();
+
 /* ── ENTRANCE ANIMATIONS ── */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {

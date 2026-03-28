@@ -24,7 +24,8 @@
 .cf-persp-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   font-size: 13px;
   color: var(--text);
   padding: 10px 14px;
@@ -39,6 +40,7 @@
 }
 .cf-persp-tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   margin-left: auto;
   flex-shrink: 0;
@@ -367,6 +369,8 @@
 /* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 768px) {
   .cf-perspectives { grid-template-columns: 1fr; }
+  .cf-persp-item { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .cf-persp-tags { margin-left: 0; }
   .cf-screenshots { grid-template-columns: 1fr; }
   .cf-screenshot-pair { flex-direction: row; }
   .cf-survey-grid { grid-template-columns: 1fr; }

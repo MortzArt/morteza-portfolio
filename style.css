@@ -130,9 +130,9 @@ nav.scrolled {
   height: 3px;
   border-radius: 2px;
 }
-.color-bar span:nth-child(1) { background: var(--accent2); flex: 50; }
-.color-bar span:nth-child(2) { background: var(--accent3); flex: 35; }
-.color-bar span:nth-child(3) { background: var(--accent); flex: 15; }
+.color-bar span:nth-child(1) { background: var(--accent2); flex: 60; }
+.color-bar span:nth-child(2) { background: var(--accent3); flex: 30; }
+.color-bar span:nth-child(3) { background: var(--accent); flex: 10; }
 
 /* ══════════ HERO ══════════ */
 .hero { margin-bottom: 120px; }

@@ -361,6 +361,28 @@ nav.scrolled {
   border: 1px solid var(--faint);
   border-radius: 20px;
   background: var(--bg2);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+}
+.behance-text {
+  flex: 1;
+  min-width: 0;
+  padding-right: 32px;
+}
+.behance-img {
+  flex: 0 0 340px;
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+.behance-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 .behance-title {
   font-family: var(--serif);
@@ -441,6 +463,17 @@ nav.scrolled {
 }
 .btn-hello-sec:hover { opacity: 0.75; }
 .btn-hello-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 0; }
+
+/* ══════════ BEHANCE BANNER ══════════ */
+.behance-banner {
+  display: block;
+  margin-bottom: 80px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+.behance-banner:hover { opacity: 0.85; }
+.behance-banner img { width: 100%; height: auto; display: block; }
 
 /* ══════════ EXPERIENCE ══════════ */
 .exp-list { margin-bottom: 80px; }

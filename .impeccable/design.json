@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-01T00:00:00Z",
+  "title": "Design System: Mori Ebrahimi Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "apple-blue": { "role": "primary", "displayName": "Apple Blue", "canonical": "#0071E3", "tonalRamp": ["oklch(20% 0.09 255)", "oklch(30% 0.13 255)", "oklch(40% 0.16 255)", "oklch(50% 0.18 255)", "oklch(56% 0.19 255)", "oklch(68% 0.15 255)", "oklch(82% 0.09 255)", "oklch(94% 0.03 255)"] },
+      "apple-blue-hover": { "role": "primary", "displayName": "Apple Blue Hover", "canonical": "#0077ED", "tonalRamp": ["oklch(20% 0.09 256)", "oklch(30% 0.13 256)", "oklch(42% 0.17 256)", "oklch(52% 0.19 256)", "oklch(58% 0.19 256)", "oklch(70% 0.14 256)", "oklch(83% 0.08 256)", "oklch(94% 0.03 256)"] },
+      "wordmark-yellow": { "role": "tertiary", "displayName": "Wordmark Yellow", "canonical": "#E0D100", "tonalRamp": ["oklch(20% 0.05 103)", "oklch(32% 0.08 103)", "oklch(44% 0.11 103)", "oklch(56% 0.14 103)", "oklch(68% 0.16 103)", "oklch(85% 0.18 103)", "oklch(91% 0.13 103)", "oklch(96% 0.06 103)"] },
+      "ground-white": { "role": "neutral", "displayName": "Ground White", "canonical": "#FFFFFF", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(100% 0 0)"] },
+      "fog-gray": { "role": "neutral", "displayName": "Fog Gray", "canonical": "#F5F5F7", "tonalRamp": ["oklch(15% 0.002 286)", "oklch(27% 0.002 286)", "oklch(39% 0.002 286)", "oklch(51% 0.002 286)", "oklch(63% 0.002 286)", "oklch(75% 0.002 286)", "oklch(87% 0.002 286)", "oklch(97% 0.002 286)"] },
+      "mist-gray": { "role": "neutral", "displayName": "Mist Gray", "canonical": "#E8E8ED", "tonalRamp": ["oklch(15% 0.004 286)", "oklch(27% 0.004 286)", "oklch(39% 0.004 286)", "oklch(51% 0.004 286)", "oklch(63% 0.004 286)", "oklch(75% 0.004 286)", "oklch(87% 0.004 286)", "oklch(93% 0.004 286)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1D1D1F", "tonalRamp": ["oklch(23% 0.004 286)", "oklch(33% 0.004 286)", "oklch(44% 0.004 286)", "oklch(55% 0.004 286)", "oklch(66% 0.004 286)", "oklch(77% 0.004 286)", "oklch(87% 0.004 286)", "oklch(95% 0.002 286)"] },
+      "muted-gray": { "role": "neutral", "displayName": "Muted Gray", "canonical": "#6E6E73", "tonalRamp": ["oklch(15% 0.006 286)", "oklch(25% 0.006 286)", "oklch(35% 0.007 286)", "oklch(45% 0.008 286)", "oklch(53% 0.008 286)", "oklch(68% 0.007 286)", "oklch(82% 0.005 286)", "oklch(94% 0.003 286)"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#D2D2D7", "tonalRamp": ["oklch(15% 0.004 286)", "oklch(27% 0.004 286)", "oklch(39% 0.004 286)", "oklch(51% 0.004 286)", "oklch(63% 0.004 286)", "oklch(75% 0.004 286)", "oklch(87% 0.004 286)", "oklch(95% 0.003 286)"] },
+      "silver-gray": { "role": "neutral", "displayName": "Silver Gray", "canonical": "#86868B", "tonalRamp": ["oklch(15% 0.005 286)", "oklch(26% 0.005 286)", "oklch(38% 0.006 286)", "oklch(50% 0.006 286)", "oklch(62% 0.006 286)", "oklch(74% 0.005 286)", "oklch(86% 0.004 286)", "oklch(95% 0.003 286)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home hero headline only; balanced, max 17ch, carries the single blue highlighted word." },
+      "headline": { "displayName": "Headline", "purpose": "Subpage heroes and case-study titles; centered, balanced, max 18-20ch." },
+      "title": { "displayName": "Title", "purpose": "Section labels and project-card titles; steps down to 24px chapter titles and 21px experience roles." },
+      "subhead": { "displayName": "Subhead", "purpose": "The gray support line under every heading: hero bios, standfirsts, case-study subtitles; always Muted Gray." },
+      "body": { "displayName": "Body", "purpose": "17px base prose; supporting text steps to 15/14px at 1.55-1.65, usually Muted Gray, 46-68ch measures." },
+      "label": { "displayName": "Label", "purpose": "Nav links, tags, dates, captions, footer; sentence-case 13px (12px minimum), never uppercase or letterspaced." },
+      "code": { "displayName": "Code", "purpose": "Case-study .cs-code blocks only; the sole monospace surface in the system." }
+    },
+    "shadows": [
+      { "name": "selection-ring", "value": "inset 0 0 0 1px #0071E3", "purpose": "The only box-shadow in the system: a 1px blue ring marking a selected option or highlighted badge box. A border in disguise, not elevation; the system is otherwise shadowless." }
+    ],
+    "motion": [
+      { "name": "ease-house", "value": "cubic-bezier(0.2, 0.6, 0.2, 1)", "purpose": "The house ease: fade-in scroll reveals (0.7s) and project image zoom (0.5s, scale 1.03)." },
+      { "name": "duration-state", "value": "0.2s", "purpose": "Hover state transitions: button fills, link colors, tag backgrounds." },
+      { "name": "duration-nav", "value": "0.35s ease", "purpose": "Nav transform (mobile hide/show) and scrolled hairline border." },
+      { "name": "reveal-offset", "value": "translateY(18px) → none, opacity 0 → 1", "purpose": ".fade-in scroll reveal via IntersectionObserver at 0.1 threshold; disabled under prefers-reduced-motion." },
+      { "name": "caret-blink", "value": "0.6s step-end infinite", "purpose": "Blue typewriter caret, visible only while the .ME wordmark is typing." },
+      { "name": "typewriter-speed", "value": "55ms/char (80ms on empty)", "purpose": ".ME ↔ Mori Ebrahimi typewriter; hero auto-plays two cycles after 3s then rests, hover replays; fully disabled under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one blue action per cluster (Book a .MEeting): Apple-blue pill, white regular text.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Book a .MEeting</a>",
+      "css": ".ds-btn-primary { display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; font-size: 17px; font-weight: 400; color: #FFFFFF; background: var(--accent, #0071E3); padding: 12px 24px; border-radius: 980px; text-decoration: none; transition: background 0.2s; } .ds-btn-primary:hover { background: var(--accent-hover, #0077ED); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #0071E3); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bordered blue pill for the supporting action; inverts to solid blue on hover; ends in the house chevron.",
+      "html": "<a href=\"#\" class=\"ds-btn-secondary\">View Behance Profile ›</a>",
+      "css": ".ds-btn-secondary { display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; font-size: 17px; font-weight: 400; color: var(--accent, #0071E3); background: transparent; border: 1px solid var(--accent, #0071E3); padding: 11px 24px; border-radius: 980px; text-decoration: none; transition: background 0.2s, color 0.2s; } .ds-btn-secondary:hover { background: var(--accent, #0071E3); color: #FFFFFF; } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, #0071E3); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "Quiet blue text link with the › chevron; underlines on hover.",
+      "html": "<a href=\"#\" class=\"ds-text-link\">Say hello ›</a>",
+      "css": ".ds-text-link { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; font-size: 17px; font-weight: 400; color: var(--accent, #0071E3); text-decoration: none; } .ds-text-link:hover { text-decoration: underline; } .ds-text-link:focus-visible { outline: 2px solid var(--accent, #0071E3); outline-offset: 3px; }"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip-skill",
+      "description": "Fog-gray pill tag for skills; deepens to mist gray on hover.",
+      "html": "<span class=\"ds-chip\">Design Systems</span>",
+      "css": ".ds-chip { display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; font-size: 14px; padding: 8px 16px; background: var(--bg2, #F5F5F7); border-radius: 980px; color: var(--text, #1D1D1F); transition: background 0.2s; } .ds-chip:hover { background: var(--bg3, #E8E8ED); }"
+    },
+    {
+      "name": "Chapter Badge",
+      "kind": "chip",
+      "refersTo": "badge-chapter",
+      "description": "Small semibold pill marking case-study chapters and statuses; blue is the primary step, ink the inverse.",
+      "html": "<span class=\"ds-badge\">CHAPTER 1</span> <span class=\"ds-badge ds-badge-ink\">CHAPTER 2</span>",
+      "css": ".ds-badge { display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 980px; white-space: nowrap; background: var(--accent, #0071E3); color: #FFFFFF; } .ds-badge-ink { background: var(--text, #1D1D1F); }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Sticky translucent blurred bar: .ME wordmark with yellow dot left, quiet 13px links right; hairline border appears after scroll.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-name\" href=\"#\"><span class=\"ds-nav-dot\">.</span>ME</a><div class=\"ds-nav-links\"><a href=\"#\">Experience</a><a href=\"#\">About <span class=\"ds-nav-dot\">.</span>ME</a></div></nav>",
+      "css": ".ds-nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: rgba(255, 255, 255, 0.8); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--faint, #D2D2D7); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; } .ds-nav-name { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; color: var(--text, #1D1D1F); text-decoration: none; } .ds-nav-dot { color: var(--dot, #E0D100); } .ds-nav-links { display: flex; gap: 32px; } .ds-nav-links a { color: var(--text, #1D1D1F); font-size: 13px; opacity: 0.8; text-decoration: none; transition: opacity 0.2s, color 0.2s; } .ds-nav-links a:hover { opacity: 1; color: var(--accent, #0071E3); }"
+    },
+    {
+      "name": "Bento Project Card",
+      "kind": "card",
+      "refersTo": "card-bento",
+      "description": "Fog-gray 28px-radius bento card; whole card is the link. Hover turns the title blue and slides in the chevron.",
+      "html": "<a href=\"#\" class=\"ds-project\"><div class=\"ds-project-top\"><div class=\"ds-project-title\">Turning Overwhelm into Trust</div><div class=\"ds-project-arrow\">›</div></div><div class=\"ds-project-tags\">Marketplace · Service Design · IA</div><div class=\"ds-project-desc\">Transformed a 3,000-profile talent marketplace into a boutique hiring experience.</div><div class=\"ds-project-metric\"><span class=\"ds-project-val\">+60%</span><span class=\"ds-project-lbl\">Client-to-hire</span></div></a>",
+      "css": ".ds-project { display: block; background: var(--bg2, #F5F5F7); border-radius: 28px; padding: 44px 48px; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; cursor: pointer; } .ds-project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; } .ds-project-title { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; color: var(--text, #1D1D1F); transition: color 0.2s; } .ds-project-arrow { font-size: 22px; color: var(--accent, #0071E3); opacity: 0; transform: translateX(-8px); transition: all 0.25s; } .ds-project:hover .ds-project-title { color: var(--accent, #0071E3); } .ds-project:hover .ds-project-arrow { opacity: 1; transform: translateX(0); } .ds-project-tags { font-size: 13px; color: var(--muted, #6E6E73); margin-bottom: 12px; } .ds-project-desc { font-size: 15px; color: var(--muted, #6E6E73); line-height: 1.55; max-width: 46ch; margin-bottom: 22px; } .ds-project-metric { display: flex; flex-direction: column; } .ds-project-val { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; color: var(--text, #1D1D1F); } .ds-project-lbl { font-size: 12px; color: var(--muted, #6E6E73); margin-top: 2px; }"
+    },
+    {
+      "name": "Result Stat Card",
+      "kind": "card",
+      "refersTo": "stat-card",
+      "description": "Centered fog-gray card with a big Apple-blue number; how case-study outcomes shout.",
+      "html": "<div class=\"ds-stat\"><div class=\"ds-stat-val\">+60%</div><div class=\"ds-stat-lbl\">Client-to-hire conversion</div></div>",
+      "css": ".ds-stat { background: var(--bg2, #F5F5F7); border-radius: 18px; padding: 28px 20px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; } .ds-stat-val { font-size: 32px; font-weight: 600; letter-spacing: -0.015em; color: var(--accent, #0071E3); } .ds-stat-lbl { font-size: 13px; color: var(--muted, #6E6E73); margin-top: 6px; }"
+    },
+    {
+      "name": "Chart Bar",
+      "kind": "custom",
+      "description": "CF survey bar: pill track in mist gray, fill in Apple blue (ink and silver for secondary/tertiary series), 12px labels.",
+      "html": "<div class=\"ds-bar\"><span class=\"ds-bar-label\">Filters</span><span class=\"ds-bar-track\"><span class=\"ds-bar-fill\" style=\"width:72%\"></span></span><span class=\"ds-bar-val\">72%</span></div>",
+      "css": ".ds-bar { display: grid; grid-template-columns: 110px 1fr 38px; gap: 8px; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; } .ds-bar-label { font-size: 12px; color: var(--muted, #6E6E73); text-align: right; } .ds-bar-track { display: block; height: 8px; background: var(--bg3, #E8E8ED); border-radius: 980px; overflow: hidden; } .ds-bar-fill { display: block; height: 100%; background: var(--accent, #0071E3); border-radius: 980px; } .ds-bar-val { font-size: 12px; font-weight: 600; color: var(--text, #1D1D1F); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cupertino Canon, Executed Straight",
+    "overview": "This site borrows the Apple marketing-page grammar without irony or remix and applies it to one designer's portfolio: an airy white ground, ink-dark system type, soft fog-gray bento cards with generously rounded corners, centered heroes with balanced semibold headlines, and exactly one chromatic voice, Apple blue, reserved for action and emphasis. The read a recruiter gets is premium, familiar, and calm; the personality lives entirely in copy and the \".ME\" wordplay, never in visual quirk. This world is a user-pinned standing preference; it deliberately replaced an earlier Swiss/grid rendition. Density is low and rhythm is generous: sections breathe at 110 to 120px, heroes center themselves in the viewport, and prose sits in muted gray at comfortable measures. Hierarchy is built almost entirely from size and gray value at two font weights (400 and 600), never from decorative devices. The one licensed dose of wit is the yellow dot in the .ME wordmark and its typewriter reveal; everything else stays inside the canon. Confirmed rejections: the Swiss/International specimen-sheet rendition (retired), drop shadows, gradients, dark mode, uppercase letterspaced labels, and mono type used as costume.",
+    "keyCharacteristics": [
+      "White ground with fog-gray bento cards at large radii; depth is tonal, never cast.",
+      "System SF type only; semibold negative-tracked display, gray 21px subheads.",
+      "One accent: Apple blue for buttons, links, hover states, stats, and the single highlighted word.",
+      "Pill geometry everywhere interactive: buttons, tags, badges, chart tracks.",
+      "Yellow #E0D100 exists only as the dot in the .ME wordmark.",
+      "Quiet motion: a typewriter wordmark and soft scroll-reveals, both gated on reduced-motion."
+    ],
+    "rules": [
+      { "name": "The One Blue Rule", "body": "Apple blue #0071E3 is the only chromatic voice on any screen. If something needs emphasis and blue is already spent nearby, use size, weight 600, or ink; never a second hue.", "section": "colors" },
+      { "name": "The Wordmark Dot Rule", "body": "Yellow #E0D100 exists only as the dot glyph in the .ME wordplay. It never colors buttons, highlights, backgrounds, borders, or charts. This is a binding brand commitment.", "section": "colors" },
+      { "name": "The Two-Weight Rule", "body": "Type is set at weight 400 or 600, nothing else. Hierarchy comes from size and the ink-versus-muted gray split, not from weight extremes, italics (one quote style excepted), or caps.", "section": "typography" },
+      { "name": "The Gray Subhead Rule", "body": "Every heading's supporting line is 21px (or smaller) regular in Muted Gray #6E6E73. Headings are ink; support is gray; the pattern never inverts.", "section": "typography" },
+      { "name": "The Tonal Sandwich Rule", "body": "Depth is white → fog gray → white → mist gray, plus hairlines. If a surface needs separation, change its gray, round its corners, or rule a hairline; never cast a shadow or paint a gradient.", "section": "elevation" },
+      { "name": "The Pill-or-Token Rule", "body": "Any radius is 28, 18, or 12px from the token scale, or the full 980px pill. No in-between values, no sharp corners.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep Apple blue #0071E3 as the sole accent: primary pills, links, hover color, stat numbers, chart fills, selection ring, ::selection, caret, and focus outline.",
+      "Do build hierarchy from the two weights (400/600), size steps, and the ink #1D1D1F vs. muted #6E6E73 split.",
+      "Do put grouped content on fog-gray #F5F5F7 bento cards at 28px radius, nesting white 12 to 18px cards inside when a chapter needs inner structure.",
+      "Do use the full pill (980px) for every button, tag, badge, and chart track, and end secondary/text links with the \"›\" chevron.",
+      "Do center heroes: greeting, balanced semibold headline (max ~17 to 20ch), 21px gray subhead, pill CTA row.",
+      "Do gate all motion (typewriter, caret, fade-in reveals) behind prefers-reduced-motion and keep transitions in the 0.2 to 0.7s range with the house ease cubic-bezier(0.2, 0.6, 0.2, 1)."
+    ],
+    "donts": [
+      "Don't cast drop shadows or paint gradients; depth is tonal grays and hairlines only (the sole permitted box-shadow is the inset 0 0 0 1px blue selection ring).",
+      "Don't use yellow #E0D100 anywhere except the dot glyph of the .ME wordmark.",
+      "Don't set uppercase or letterspaced labels, kickers, or eyebrows; labels are sentence-case 12 to 13px muted gray.",
+      "Don't use monospace outside .cs-code blocks; mono is a material for code, not a costume.",
+      "Don't introduce radii outside the 28/18/12px token scale (pill excepted), borders other than the secondary button's 1px blue and hairline rules, or a dark mode.",
+      "Don't add a second accent hue, decorative icons beyond the \"›\"/\"‹\" chevrons and middot separators, or new theatrical animations beside the typewriter."
+    ]
+  }
+}

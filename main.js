@@ -66,6 +66,8 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
 /* ── NAME TYPEWRITER ── */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 document.querySelectorAll('.name-reveal').forEach(el => {
   const shortText = el.dataset.short;
   const fullText = el.dataset.full;
@@ -79,6 +81,9 @@ document.querySelectorAll('.name-reveal').forEach(el => {
   if (shortText.startsWith('.')) {
     typed.innerHTML = '<span class="dot">.</span>' + shortText.slice(1);
   }
+
+  // Reduced motion: rest on the static wordmark, no typing at all
+  if (prefersReducedMotion) return;
 
   function typeStep() {
     if (currentText === targetText) {
@@ -123,14 +128,18 @@ document.querySelectorAll('.name-reveal').forEach(el => {
   trigger.addEventListener('mouseenter', () => { autoPlaying = false; animateTo(fullText); });
   trigger.addEventListener('mouseleave', () => { autoPlaying = false; animateTo(shortText); });
 
-  // Auto-play loop for hero name-reveal
+  // Auto-play for hero name-reveal: two full reveal cycles, then rest.
+  // Hover still replays it; the page otherwise stays set, like print.
   let autoPlaying = false;
   if (hero) {
     let showingFull = false;
+    let steps = 0;
     autoPlaying = true;
 
     function autoLoop() {
       if (!autoPlaying) return;
+      if (steps >= 4) { autoPlaying = false; animateTo(shortText); return; }
+      steps++;
       showingFull = !showingFull;
       animateTo(showingFull ? fullText : shortText);
       // Wait for typing to finish, then hold for 3 seconds

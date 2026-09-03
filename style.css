@@ -139,6 +139,7 @@ nav.scrolled .nav-pill {
     visibility 0s linear 0s;
 }
 .nav-full a {
+  flex: none;
   color: #fff;
   font-size: 15px;
   font-weight: 500;

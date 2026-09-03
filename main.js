@@ -7,12 +7,13 @@
 
   // Measure natural widths so the pill animates exactly between its two sizes
   const measure = () => {
-    full.style.setProperty('--w', full.scrollWidth + 'px');
-    compact.style.setProperty('--w', compact.scrollWidth + 'px');
+    full.style.setProperty('--w', (full.scrollWidth + 2) + 'px');
+    compact.style.setProperty('--w', (compact.scrollWidth + 2) + 'px');
   };
   measure();
   window.addEventListener('resize', measure);
   window.addEventListener('load', measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
   // Collapse when scrolling down past the threshold, expand on any scroll up
   const THRESHOLD = 50;

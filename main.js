@@ -1,59 +1,36 @@
-/* ── NAVBAR SCROLL BEHAVIOR ── */
+/* ── NAVBAR: floating pill collapses on scroll ── */
 (() => {
   const nav = document.querySelector('nav');
-  let lastScrollY = window.scrollY;
-  let ticking = false;
-  const isMobile = () => window.innerWidth <= 768;
+  const full = nav && nav.querySelector('.nav-full');
+  const compact = nav && nav.querySelector('.nav-compact');
+  if (!nav || !full || !compact) return;
 
+  // Measure natural widths so the pill animates exactly between its two sizes
+  const measure = () => {
+    full.style.setProperty('--w', full.scrollWidth + 'px');
+    compact.style.setProperty('--w', compact.scrollWidth + 'px');
+  };
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+
+  // Collapse when scrolling down past the threshold, expand on any scroll up
+  const THRESHOLD = 50;
+  let ticking = false;
+  let lastY = window.scrollY;
+  const update = () => {
+    const y = window.scrollY;
+    if (y > THRESHOLD && y > lastY) nav.classList.add('scrolled');
+    else if (y < lastY || y <= THRESHOLD) nav.classList.remove('scrolled');
+    lastY = y;
+    ticking = false;
+  };
   window.addEventListener('scroll', () => {
     if (ticking) return;
     ticking = true;
-
-    requestAnimationFrame(() => {
-      const currentY = window.scrollY;
-
-      // Add/remove scrolled shadow
-      if (currentY > 10) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-
-      // Mobile drawer: hide on scroll down, show on scroll up
-      if (isMobile()) {
-        if (currentY > lastScrollY && currentY > 80) {
-          nav.classList.add('nav-hidden');
-        } else {
-          nav.classList.remove('nav-hidden');
-        }
-      }
-
-      lastScrollY = currentY;
-      ticking = false;
-    });
+    requestAnimationFrame(update);
   });
-})();
-
-/* ── HAMBURGER MENU ── */
-(() => {
-  const btn = document.querySelector('.hamburger');
-  const links = document.querySelector('.nav-links');
-  if (!btn || !links) return;
-
-  btn.addEventListener('click', () => {
-    const open = btn.classList.toggle('open');
-    links.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open);
-  });
-
-  // Close menu when a link is clicked
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      btn.classList.remove('open');
-      links.classList.remove('open');
-      btn.setAttribute('aria-expanded', false);
-    });
-  });
+  update();
 })();
 
 /* ── ENTRANCE ANIMATIONS ── */
@@ -65,92 +42,59 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
-/* ── NAME TYPEWRITER ── */
+/* ── MOTION PREFERENCE ── */
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.querySelectorAll('.name-reveal').forEach(el => {
-  const shortText = el.dataset.short;
-  const fullText = el.dataset.full;
-  const typed = el.querySelector('.name-typed');
-  let animating = false;
-  let currentText = shortText;
-  let targetText = shortText;
-  let timeout = null;
+/* ── HERO VIDEO: start after 2s, replay with a 7s pause between plays ── */
+(() => {
+  const video = document.querySelector('.hero-video');
+  if (!video || prefersReducedMotion) return;
+  video.loop = false;
+  const play = () => video.play().catch(() => {});
+  setTimeout(play, 2000);
+  video.addEventListener('ended', () => setTimeout(play, 7000));
+})();
 
-  // Color the dot on initial load
-  if (shortText.startsWith('.')) {
-    typed.innerHTML = '<span class="dot">.</span>' + shortText.slice(1);
-  }
+/* ── WORD SWAP: cycle through words separated by "|" ── */
+(() => {
+  const swaps = document.querySelectorAll('.word-swap');
+  if (!swaps.length) return;
 
-  // Reduced motion: rest on the static wordmark, no typing at all
+  swaps.forEach(el => {
+    const words = el.dataset.words.split('|').map(w => w.trim()).filter(Boolean);
+    el.innerHTML = '';
+    words.forEach((w, i) => {
+      const span = document.createElement('span');
+      span.textContent = w;
+      if (i === 0) span.classList.add('is-active');
+      el.appendChild(span);
+    });
+  });
+
+  // Size each swap to its active word so the sentence flows naturally
+  const fit = el => {
+    const active = el.querySelector('.is-active');
+    if (active) el.style.width = active.offsetWidth + 'px';
+  };
+  swaps.forEach(fit);
+  window.addEventListener('resize', () => swaps.forEach(fit));
+
   if (prefersReducedMotion) return;
 
-  function typeStep() {
-    if (currentText === targetText) {
-      animating = false;
-      el.classList.remove('typing');
-      return;
-    }
+  const HOLD = 2200;
+  let index = 0;
 
-    el.classList.add('typing');
-
-    // If current text isn't a prefix of target, delete a character
-    if (!targetText.startsWith(currentText)) {
-      currentText = currentText.slice(0, -1);
-    } else {
-      // Add next character from target
-      currentText = targetText.slice(0, currentText.length + 1);
-    }
-
-    // Color the dot in .ME with accent color
-    if (currentText.startsWith('.')) {
-      typed.innerHTML = '<span class="dot">.</span>' + currentText.slice(1);
-    } else {
-      typed.textContent = currentText;
-    }
-    const speed = currentText.length === 0 ? 80 : 55;
-    timeout = setTimeout(typeStep, speed);
-  }
-
-  function animateTo(text) {
-    if (targetText === text) return;
-    targetText = text;
-    if (!animating) {
-      animating = true;
-      typeStep();
-    }
-  }
-
-  // Check if this name-reveal lives inside .hero — if so, the whole hero triggers it
-  const hero = el.closest('.hero');
-  const trigger = hero || el;
-
-  trigger.addEventListener('mouseenter', () => { autoPlaying = false; animateTo(fullText); });
-  trigger.addEventListener('mouseleave', () => { autoPlaying = false; animateTo(shortText); });
-
-  // Auto-play for hero name-reveal: two full reveal cycles, then rest.
-  // Hover still replays it; the page otherwise stays set, like print.
-  let autoPlaying = false;
-  if (hero) {
-    let showingFull = false;
-    let steps = 0;
-    autoPlaying = true;
-
-    function autoLoop() {
-      if (!autoPlaying) return;
-      if (steps >= 4) { autoPlaying = false; animateTo(shortText); return; }
-      steps++;
-      showingFull = !showingFull;
-      animateTo(showingFull ? fullText : shortText);
-      // Wait for typing to finish, then hold for 3 seconds
-      const typingDuration = (shortText.length + fullText.length) * 55 + 200;
-      setTimeout(autoLoop, typingDuration + 3000);
-    }
-
-    // Start with 3 second delay
-    setTimeout(autoLoop, 3000);
-
-    // Stop auto-play on any hover interaction with the hero
-    trigger.addEventListener('mouseenter', () => { autoPlaying = false; });
-  }
-});
+  setInterval(() => {
+    swaps.forEach(el => {
+      const spans = el.children;
+      const current = spans[index % spans.length];
+      const next = spans[(index + 1) % spans.length];
+      current.classList.remove('is-active');
+      current.classList.add('is-leaving');
+      setTimeout(() => current.classList.remove('is-leaving'), 450);
+      next.classList.add('is-active');
+      fit(el);
+    });
+    index++;
+  }, HOLD);
+})();

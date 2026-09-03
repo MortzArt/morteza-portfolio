@@ -32,9 +32,9 @@ Static HTML/CSS/JS site (no framework, no build step) deployed on GitHub Pages w
 
 ## Brand Commitments
 
-- The ".ME" wordmark/name-play (".ME", "About .ME", "Let's .MEet", "Book a .MEeting") is binding; future work must preserve the motif.
+- The ".ME" wordmark/name-play was retired on 2026-09-03. Labels are now plain words ("About me", "Let's meet", "Book a meeting"); the nav shows an avatar pill instead of a wordmark.
 - Standing design preference (user-pinned, September 2026): the site follows the Apple marketing-page canon (apple.com craft bar) — system SF type, centered heroes, pill buttons, soft gray cards, large radii — executed straight, no smuggled quirk. A prior Swiss/grid white rendition was rejected.
-- Palette is otherwise open; the yellow `#E0D100` survives only as the dot in the .ME wordmark.
+- Palette is otherwise open; a single green `#30D158` appears only as the "Available for work" status dot in the nav pill. The old yellow is retired.
 
 ## Evidence on Hand
 
@@ -48,4 +48,4 @@ Static HTML/CSS/JS site (no framework, no build step) deployed on GitHub Pages w
 1. Optimize for the skimming recruiter: seniority and impact must be legible in the first viewport and the case-study cards.
 2. Every page should shorten the path to booking a meeting.
 3. Lead with outcomes and process, not decoration; metrics stay truthful to Evidence on Hand.
-4. The .ME motif carries the personality; wit lives in the wordplay, warmth in the copy (the "pour a tea" invitation).
+4. Personality comes from the copy: the swapping verb in the headline and the warmth of the "pour a tea" invitation. No wordplay on the name.

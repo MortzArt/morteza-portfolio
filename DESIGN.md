@@ -4,7 +4,7 @@ description: Apple marketing-page canon executed straight for a senior product d
 colors:
   apple-blue: "#0071E3"
   apple-blue-hover: "#0077ED"
-  wordmark-yellow: "#E0D100"
+  status-green: "#30D158"
   ground-white: "#FFFFFF"
   fog-gray: "#F5F5F7"
   mist-gray: "#E8E8ED"
@@ -124,19 +124,19 @@ Confirmed rejections: the Swiss/International specimen-sheet rendition (retired)
 - System SF type only; semibold negative-tracked display, gray 21px subheads.
 - One accent: Apple blue for buttons, links, hover states, stats, and the single highlighted word.
 - Pill geometry everywhere interactive: buttons, tags, badges, chart tracks.
-- Yellow #E0D100 exists only as the dot in the .ME wordmark.
-- Quiet motion: a typewriter wordmark and soft scroll-reveals, both gated on reduced-motion.
+- Green #30D158 exists only as the "Available for work" status dot in the collapsed nav pill.
+- Quiet motion: a swapping headline verb, a delayed intro video, a collapsing nav pill, and soft scroll-reveals, all gated on reduced-motion.
 
 ## Colors
 
-An almost-grayscale Apple palette where a single blue does all the chromatic work and one yellow dot signs the wordmark.
+An almost-grayscale Apple palette where a single blue does all the chromatic work and one green dot marks availability in the nav.
 
 ### Primary
 - **Apple Blue** (#0071E3): the only working accent. Fills primary pill buttons, colors text links and the "Say hello ›" chevron links, the highlighted word in the hero headline, hover color of nav links and project titles, result-stat numbers, chart bar fills, chapter badges, finding numbers, lesson dots, the selection ring on chosen options, `::selection`, caret, and the focus-visible outline.
 - **Apple Blue Hover** (#0077ED): hover fill for the primary button only; a half-step brighter, nothing else changes.
 
 ### Tertiary
-- **Wordmark Yellow** (#E0D100): appears exclusively as the "." glyph inside the .ME wordmark (nav name, "About .ME", "Let's .MEet" section labels). It is a signature, not a working color.
+- **Status Green** (#30D158): used only for the pulsing "Available for work" status dot in the collapsed nav pill. The former yellow .ME wordmark motif was retired on 2026-09-03.
 
 ### Neutral
 - **Ground White** (#FFFFFF): page background, nested card background inside gray chapters, primary-button text.
@@ -150,7 +150,7 @@ An almost-grayscale Apple palette where a single blue does all the chromatic wor
 ### Named Rules
 **The One Blue Rule.** Apple blue #0071E3 is the only chromatic voice on any screen. If something needs emphasis and blue is already spent nearby, use size, weight 600, or ink; never a second hue.
 
-**The Wordmark Dot Rule.** Yellow #E0D100 exists only as the dot glyph in the .ME wordplay. It never colors buttons, highlights, backgrounds, borders, or charts. This is a binding brand commitment.
+**The Status Dot Rule.** Green #30D158 exists only as the pulsing "Available for work" dot in the collapsed nav pill. It never colors buttons, highlights, backgrounds, borders, or charts. This is a binding brand commitment.
 
 ## Typography
 
@@ -205,7 +205,7 @@ Soft, large, and consistent. Three radius tokens carry every rectangle: **28px**
 
 ### Buttons
 - **Shape:** full pill (border-radius 980px).
-- **Primary** (`.btn-hello`, "Book a .MEeting"): Apple blue fill, white 17px regular text, 12px 24px padding; hover brightens to #0077ED over 0.2s. One per hero/CTA cluster.
+- **Primary** (`.btn-hello`, "Book a meeting"): Apple blue fill, white 17px regular text, 12px 24px padding; hover brightens to #0077ED over 0.2s. One per hero/CTA cluster.
 - **Secondary** (`.btn-hello-sec`, "View Behance Profile ›"): transparent with a 1px Apple-blue border and blue text, 11px 24px padding; hover inverts to solid blue with white text.
 - **Text link** (`.btn-link`, "Say hello ›"): bare 17px Apple-blue text, underline on hover. Secondary and text links end in the **"›" chevron**; the chevron is the site's entire icon vocabulary (also the project-card hover arrow and "‹ Back").
 
@@ -220,7 +220,7 @@ Soft, large, and consistent. Three radius tokens carry every rectangle: **28px**
 - **Education block:** fog gray, 18px radius, date/detail grid.
 
 ### Navigation
-- Sticky translucent bar: `rgba(255,255,255,0.8)` + `blur(20px) saturate(180%)`; hairline bottom border appears after 10px of scroll. Left: the 19px semibold ".ME" wordmark (yellow dot). Right: 13px links at 0.8 opacity, hover to full opacity and blue. Mobile: fixed, hides on scroll-down, hamburger opens a translucent drawer of hairline-divided rows.
+- Fixed, centered floating pill: `rgba(0,0,0,0.86)` black glass + `blur(20px) saturate(180%)`, 54px tall, 999px radius. Contents: 40px white circle holding the line-art favicon, 15px white links at 0.78 opacity (full white on hover or when active), and a solid white "Work with me" pill with an envelope icon. Scrolling down past 50px collapses the links and CTA (max-width to 0 over 0.45s, standard ease) and reveals "Available for work" with a pulsing green dot; any upward scroll re-expands it. No bounce. Mobile: 48px pill, icon-only CTA, no wordmark.
 
 ### Experience rows
 - Hairline-divided grid rows (170px date / detail / type tag), 36px vertical padding, last row unruled. Role 21px semibold ink, company 15px ink, location/date/type muted.
@@ -228,8 +228,8 @@ Soft, large, and consistent. Three radius tokens carry every rectangle: **28px**
 ### Charts (CF case study)
 - Horizontal bars on 8px-high pill tracks: mist-gray track, fills in Apple blue (primary), ink (secondary), silver gray (tertiary). Labels 12px muted right-aligned, values 12px semibold ink. The competitor table uses blue semibold for "yes" and silver for "no", tabular numerals, hairline row rules, fog-gray hover.
 
-### Signature: the .ME Typewriter Wordmark
-The nav name and hero greeting render ".ME" with a yellow dot; JavaScript types it out to "Mori Ebrahimi" and back, with a blinking blue `|` caret (0.6s step-end) visible only while typing. The hero instance auto-plays two full reveal cycles after a 3s delay (55ms per character, 3s holds), then rests like print; hovering the hero replays it, hovering the nav wordmark works on any page. Under `prefers-reduced-motion` the wordmark stays static with no caret. This is the one theatrical moment in the system; do not add siblings.
+### Signature: the Swapping Verb
+The hero headline reads "Product Designer who [solves / builds / codes / ships]". The verb is Apple blue and cycles every 2.2s: the outgoing word slides up and fades while the next slides in from below (0.45s ease), and the slot's width animates to the incoming word so the line never jumps. Beside it, the intro video starts 2s after load, plays once, then replays after a 7s pause. Under `prefers-reduced-motion` the first verb stays static and the video shows its first frame. These are the theatrical moments in the system; do not add siblings.
 
 ## Do's and Don'ts
 
@@ -238,13 +238,13 @@ The nav name and hero greeting render ".ME" with a yellow dot; JavaScript types 
 - **Do** build hierarchy from the two weights (400/600), size steps, and the ink #1D1D1F vs. muted #6E6E73 split.
 - **Do** put grouped content on fog-gray #F5F5F7 bento cards at 28px radius, nesting white 12 to 18px cards inside when a chapter needs inner structure.
 - **Do** use the full pill (980px) for every button, tag, badge, and chart track, and end secondary/text links with the "›" chevron.
-- **Do** center heroes: greeting, balanced semibold headline (max ~17 to 20ch), 21px gray subhead, pill CTA row.
-- **Do** gate all motion (typewriter, caret, fade-in reveals) behind `prefers-reduced-motion` and keep transitions in the 0.2 to 0.7s range with the house ease `cubic-bezier(0.2, 0.6, 0.2, 1)`.
+- **Do** left-align the home hero: 21px greeting, one-line semibold headline with the swapping blue verb, then a two-column grid of 16:9 video frame and 21px gray bio with the pill CTA. Subpage heroes stay centered.
+- **Do** gate all motion (verb swap, video autoplay, nav collapse, fade-in reveals) behind `prefers-reduced-motion` and keep transitions in the 0.2 to 0.7s range with the house ease `cubic-bezier(0.2, 0.6, 0.2, 1)`.
 
 ### Don't:
 - **Don't** cast drop shadows or paint gradients; depth is tonal grays and hairlines only (the sole permitted box-shadow is the `inset 0 0 0 1px` blue selection ring).
-- **Don't** use yellow #E0D100 anywhere except the dot glyph of the .ME wordmark.
+- **Don't** use green #30D158 anywhere except the "Available for work" status dot.
 - **Don't** set uppercase or letterspaced labels, kickers, or eyebrows; labels are sentence-case 12 to 13px muted gray.
 - **Don't** use monospace outside `.cs-code` blocks; mono is a material for code, not a costume.
 - **Don't** introduce radii outside the 28/18/12px token scale (pill excepted), borders other than the secondary button's 1px blue and hairline rules, or a dark mode.
-- **Don't** add a second accent hue, decorative icons beyond the "›"/"‹" chevrons and middot separators, or new theatrical animations beside the typewriter.
+- **Don't** add a second accent hue, decorative icons beyond the "›"/"‹" chevrons and middot separators, or new theatrical animations beside the verb swap and video.

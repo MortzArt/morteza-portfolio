@@ -40,7 +40,7 @@ Static HTML/CSS/JS site (no framework, no build step) deployed on GitHub Pages w
 
 - Case-study metrics: PONS +60% client-to-hire, shortlist time 2d→1h; Creative Fabrica 8 competitors analyzed, 9 key improvements. These are real claims; do not invent additional metrics or testimonials.
 - Assets in repo: `Morteza Ebrahimi - CV.pdf`, `behance.jpg`, `tea.webp`, `me2.jpg`, `favicon.png`, case-study images under `casestudy/*/images/`.
-- Contact: e.morteza@gmail.com, Google Calendar booking link, Behance profile.
+- Contact: hello@mortzart.com, Google Calendar booking link, Behance profile.
 - No testimonials, press, or client logos on hand; do not fabricate any.
 
 ## Product Principles

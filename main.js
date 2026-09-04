@@ -51,9 +51,29 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   const video = document.querySelector('.hero-video');
   if (!video || prefersReducedMotion) return;
   video.loop = false;
-  const play = () => video.play().catch(() => {});
-  setTimeout(play, 2000);
-  video.addEventListener('ended', () => setTimeout(play, 7000));
+  let timer = null;
+  const play = () => {
+    timer = null;
+    if (document.hidden) return;
+    video.play().catch(() => {});
+  };
+  const schedule = (ms) => {
+    clearTimeout(timer);
+    timer = setTimeout(play, ms);
+  };
+  schedule(2000);
+  video.addEventListener('ended', () => schedule(7000));
+
+  // Mobile browsers pause media when the tab goes to the background and never
+  // fire `ended`, which kills the replay loop. Pick it back up on return.
+  const resume = () => {
+    if (document.hidden) return;
+    if (timer) return;                    // a replay is already queued
+    if (video.ended) { schedule(2000); return; }
+    if (video.paused) video.play().catch(() => schedule(2000));
+  };
+  document.addEventListener('visibilitychange', resume);
+  window.addEventListener('pageshow', resume);
 })();
 
 /* ── WORD SWAP: cycle through words separated by "|" ── */

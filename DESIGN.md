@@ -117,7 +117,7 @@ This site borrows the Apple marketing-page grammar without irony or remix and ap
 
 Density is low and rhythm is generous: sections breathe at 110 to 120px, heroes center themselves in the viewport, and prose sits in muted gray at comfortable measures. Hierarchy is built almost entirely from size and gray value at two font weights (400 and 600), never from decorative devices. The one licensed dose of wit is the yellow dot in the ".ME" wordmark and its typewriter reveal; everything else stays inside the canon.
 
-Confirmed rejections: the Swiss/International specimen-sheet rendition (retired), drop shadows, gradients, dark mode, uppercase letterspaced labels, and mono type used as costume.
+Confirmed rejections: the Swiss/International specimen-sheet rendition (retired), drop shadows, gradients, a site-wide dark mode, uppercase letterspaced labels, and mono type used as costume. The one sanctioned dark moment is the home page's closing "Let's meet" chapter (added 2026-09-06): as its top crosses the viewport center the whole page ground fades to pure black over 0.8s and the neutral tokens invert, in the manner of Mad Monkey's scroll-triggered `data-color` sections.
 
 **Key Characteristics:**
 - White ground with fog-gray bento cards at large radii; depth is tonal, never cast.
@@ -126,6 +126,7 @@ Confirmed rejections: the Swiss/International specimen-sheet rendition (retired)
 - Pill geometry everywhere interactive: buttons, tags, badges, chart tracks.
 - Green #30D158 exists only as the "Available for work" status dot in the collapsed nav pill.
 - Quiet motion: a swapping headline verb, a delayed intro video, a collapsing nav pill, and soft scroll-reveals, all gated on reduced-motion.
+- One scroll-driven ground change: the home page fades to black for the "Let's meet" chapter and footer, and back to white on scrolling up; it is a color fade, not movement, so it is not gated on reduced-motion.
 
 ## Colors
 
@@ -145,6 +146,7 @@ An almost-grayscale Apple palette where a single blue does all the chromatic wor
 - **Ink** (#1D1D1F): all headings and primary text; also the fill of the rare "inverse" badge (black pill, white text).
 - **Muted Gray** (#6E6E73): the voice of running prose: subheads, descriptions, tags, dates, captions, footer.
 - **Hairline** (#D2D2D7): 1px rules only: scrolled-nav bottom border, experience-row dividers, footer top rule, tag separators.
+- **Pure Black** (#000000): the ground of the home page's "Let's meet" chapter and footer once scrolled into view. On black the neutrals swap to their dark counterparts: text #F5F5F7, muted #A1A1A6, card surface #1C1C1E, hairline #3A3A3C, and the outline button, links, and underline move to a brighter Apple blue #2997FF for contrast. The filled primary button keeps #0071E3 so its white label stays legible. The glass nav pill gains a stronger white edge so it still reads against black.
 - **Silver Gray** (#86868B): quietest text step, used for "no" cells and tertiary chart bars in the CF comparison table (legacy alias `--accent3`).
 
 ### Named Rules
@@ -220,7 +222,7 @@ Soft, large, and consistent. Three radius tokens carry every rectangle: **28px**
 - **Education block:** fog gray, 18px radius, date/detail grid.
 
 ### Navigation
-- Fixed, centered floating pill: `rgba(0,0,0,0.86)` black glass + `blur(20px) saturate(180%)`, 54px tall, 999px radius. Contents: 40px white circle holding the line-art favicon, 15px white links at 0.78 opacity (full white on hover or when active), and a solid white "Work with me" pill with an envelope icon. Scrolling down past 50px collapses the links and CTA (max-width to 0 over 0.45s, standard ease) and reveals "Available for work" with a pulsing green dot; any upward scroll re-expands it. No bounce. Mobile: 48px pill, icon-only CTA, no wordmark.
+- Fixed, centered floating pill: white glass, `rgba(255,255,255,0.62)` + `blur(24px) saturate(160%)`, a hairline at 8% black and a white top sheen, 54px tall, 999px radius. Contents: 40px white circle holding the line-art favicon, 15px ink links at 0.72 opacity (full ink on hover or when active), and a solid ink "Get in Touch" pill with white label and envelope icon. The glass follows its ground: over the black "Let's meet" chapter (body.is-dark) the fill fades to `rgba(0,0,0,0.55)` with a white edge, links and the compact label go white, and the CTA inverts to white with ink text, all over the same 0.8s as the page fade (changed 2026-09-06). Scrolling down past 50px collapses the links and CTA (max-width to 0 over 0.45s, standard ease) and reveals "Available for work" with a pulsing green dot; any upward scroll re-expands it. No bounce. Mobile: 48px pill, icon-only CTA, no wordmark.
 
 ### Experience rows
 - Hairline-divided grid rows (170px date / detail / type tag), 36px vertical padding, last row unruled. Role 21px semibold ink, company 15px ink, location/date/type muted.

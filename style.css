@@ -59,7 +59,8 @@ nav {
 nav > * { pointer-events: auto; }
 
 
-/* Floating glass pill: translucent black, heavy blur, light edge and top sheen */
+/* Floating glass pill: white glass on the light page. Over the black "Let's meet"
+   chapter (body.is-dark) the same glass reads black, like material picking up its ground. */
 .nav-pill {
   position: relative;
   display: flex;
@@ -67,26 +68,34 @@ nav > * { pointer-events: auto; }
   height: 54px;
   padding: 0 6px;
   border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0) 55%),
-    rgba(0, 0, 0, 0.55);
+  background-color: rgba(255, 255, 255, 0.62);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow:
-    0 12px 36px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
-  transition: box-shadow 0.5s ease, background-color 0.5s ease;
+    0 12px 36px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.5s ease, background-color 0.8s ease, border-color 0.8s ease;
+}
+.nav-pill > * { position: relative; z-index: 1; }
+/* Top sheen, separate layer so it can fade independently of the fill */
+.nav-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 60%);
+  opacity: 1;
+  transition: opacity 0.8s ease;
 }
 nav.scrolled .nav-pill {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0) 55%),
-    rgba(0, 0, 0, 0.62);
+  background-color: rgba(255, 255, 255, 0.72);
   box-shadow:
-    0 14px 40px rgba(0, 0, 0, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+    0 14px 40px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
 }
 .nav-avatar {
   position: relative;
@@ -97,16 +106,14 @@ nav.scrolled .nav-pill {
   overflow: hidden;
   background: #fff;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.28),
-    0 4px 10px rgba(0, 0, 0, 0.4),
-    0 0 16px rgba(255, 255, 255, 0.22);
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.14);
   transition: box-shadow 0.3s ease;
 }
 .nav-avatar:hover {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.4),
-    0 6px 14px rgba(0, 0, 0, 0.45),
-    0 0 22px rgba(255, 255, 255, 0.32);
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 6px 14px rgba(0, 0, 0, 0.2);
 }
 /* Curved-glass dome over the artwork: top specular arc, darker curved bottom */
 .nav-avatar::after {
@@ -140,15 +147,15 @@ nav.scrolled .nav-pill {
 }
 .nav-full a {
   flex: none;
-  color: #fff;
+  color: var(--text);
   font-size: 15px;
   font-weight: 500;
   padding: 0 14px;
-  opacity: 0.78;
-  transition: opacity 0.2s, color 0.2s;
+  opacity: 0.72;
+  transition: opacity 0.2s, color 0.8s ease;
 }
 .nav-full a:first-child { margin-left: 6px; }
-.nav-full a:hover { opacity: 1; color: #fff; }
+.nav-full a:hover { opacity: 1; }
 .nav-full a.active { opacity: 1; }
 .nav-cta {
   display: inline-flex;
@@ -158,19 +165,20 @@ nav.scrolled .nav-pill {
   margin-left: 8px;
   padding: 0 18px !important;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--text) !important;
+  background: #1D1D1F;
+  color: #FFFFFF !important;
   font-weight: 600 !important;
   opacity: 1 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.8s ease, color 0.8s ease;
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); }
 .nav-cta-icon { flex: none; }
 
 .nav-compact {
   gap: 10px;
-  color: #fff;
+  color: var(--text);
+  transition: color 0.8s ease;
   font-size: 15px;
   font-weight: 600;
 }
@@ -565,6 +573,7 @@ nav.scrolled .nav-compact {
 }
 .exp-company { font-size: 15px; color: var(--text); margin-bottom: 2px; }
 .exp-loc { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+.exp-summary { font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 12px; max-width: 640px; }
 .exp-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
 .exp-desc li { margin-left: 16px; margin-bottom: 6px; }
 .exp-type { font-size: 13px; color: var(--muted); padding-top: 7px; white-space: nowrap; }
@@ -960,6 +969,59 @@ footer a:hover { color: var(--text); text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) {
   .fade-in { opacity: 1; transform: none; transition: none; }
 }
+
+/* ══════════ COLOR SCOPE: page fades to black at "Let's meet" ══════════
+   main.js adds body.is-dark once the [data-color] wrapper's top passes the
+   viewport center (Mad Monkey-style). Tokens are swapped for contrast on #000. */
+body { transition: background-color 0.8s ease, color 0.8s ease; }
+body.is-dark {
+  background: #000000;
+  --bg: #000000;
+  --bg2: #1C1C1E;
+  --bg3: #2C2C2E;
+  --text: #F5F5F7;
+  --muted: #A1A1A6;
+  --faint: #3A3A3C;
+  --accent: #2997FF;
+  --accent-hover: #5AAEFF;
+  --accent2: #F5F5F7;
+  --accent3: #86868B;
+  color: var(--text);
+}
+/* Elements that read tokens directly need their own transitions to fade with the page */
+.sec-label, .about-quote, .about-text, .about-portrait,
+.behance-section, .behance-title, .behance-desc,
+footer, footer a, .btn-hello-sec, .btn-link, .p-card, .p-desc, .p-metric-lbl {
+  transition-property: color, background-color, border-color;
+  transition-duration: 0.8s;
+  transition-timing-function: ease;
+}
+footer a:hover, .btn-hello-sec:hover { transition-duration: 0.2s; }
+/* Filled CTA keeps Apple blue so white label stays AA; outline CTA uses the brighter blue */
+body.is-dark .btn-hello { background: #0071E3; }
+body.is-dark .btn-hello:hover { background: #0077ED; }
+body.is-dark .btn-hello-sec:hover { background: var(--accent); color: #000000; }
+body.is-dark ::selection { background: var(--accent); color: #000000; }
+/* Nav glass over the black chapter: same pill, now reading as black glass */
+body.is-dark .nav-pill,
+body.is-dark nav.scrolled .nav-pill {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+body.is-dark .nav-pill::before { opacity: 0.12; }
+body.is-dark .nav-avatar {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 4px 10px rgba(0, 0, 0, 0.4),
+    0 0 16px rgba(255, 255, 255, 0.22);
+}
+body.is-dark .nav-full a { color: #FFFFFF; }
+body.is-dark .nav-compact { color: #FFFFFF; }
+body.is-dark .nav-cta { background: rgba(255, 255, 255, 0.92); color: #1D1D1F !important; }
 
 /* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 768px) {

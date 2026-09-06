@@ -119,3 +119,26 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     index++;
   }, HOLD);
 })();
+
+/* ── COLOR SCOPE: fade the page to the section's color once its top passes the
+   viewport center (mirrors Mad Monkey's data-color ScrollTrigger, start "top center") ── */
+(() => {
+  const scope = document.querySelector('[data-color]');
+  if (!scope) return;
+  let ticking = false;
+  const update = () => {
+    const r = scope.getBoundingClientRect();
+    const mid = window.innerHeight / 2;
+    const active = r.top <= mid;   // last section on the page, so no "end" edge
+    document.body.classList.toggle('is-dark', active);
+    ticking = false;
+  };
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();

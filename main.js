@@ -46,6 +46,35 @@ document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 /* ── MOTION PREFERENCE ── */
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* ── SHORTLIST ANIMATION: play the embedded motion piece only while its card is
+   on screen; restart from the top each time it scrolls back in ── */
+(() => {
+  const frames = document.querySelectorAll('.p-anim-frame');
+  if (!frames.length) return;
+  const api = f => { try { return f.contentWindow && f.contentWindow.SHORTLIST; } catch (e) { return null; } };
+  const drive = (f, on) => {
+    const a = api(f);
+    if (!a) return;
+    if (prefersReducedMotion) { a.setTime(a.DUR - 0.01); return; }   // rest on the endcard
+    if (on) a.restart(); else a.pause();
+  };
+  const seen = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const f = e.target;
+      f.dataset.on = e.isIntersecting ? '1' : '';
+      drive(f, e.isIntersecting);
+    });
+  }, { threshold: 0.35 });
+  frames.forEach(f => {
+    // the iframe may finish loading after the observer has already fired
+    f.addEventListener('load', () => drive(f, f.dataset.on === '1'));
+    seen.observe(f);
+  });
+  document.addEventListener('visibilitychange', () => {
+    frames.forEach(f => { if (f.dataset.on === '1') drive(f, !document.hidden); });
+  });
+})();
+
 /* ── HERO VIDEO: start after 2s, replay with a 7s pause between plays ── */
 (() => {
   const video = document.querySelector('.hero-video');

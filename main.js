@@ -21,8 +21,10 @@
   let lastY = window.scrollY;
   const update = () => {
     const y = window.scrollY;
+    const was = nav.classList.contains('scrolled');
     if (y > THRESHOLD && y > lastY) nav.classList.add('scrolled');
     else if (y < lastY || y <= THRESHOLD) nav.classList.remove('scrolled');
+    if (nav.classList.contains('scrolled') !== was) settle();
     lastY = y;
     ticking = false;
   };
@@ -31,6 +33,69 @@
     ticking = true;
     requestAnimationFrame(update);
   });
+
+  /* ── LIQUID GLASS LENS: a single piece of glass that rests behind the current
+     item (home avatar, or the active section link) and flows to whichever link
+     the pointer is over — Apple's matchedGeometry morph, in CSS transitions ── */
+  const pill = nav.querySelector('.nav-pill');
+  const avatar = pill && pill.querySelector('.nav-avatar');
+  const links = pill ? [...pill.querySelectorAll('.nav-full a:not(.nav-cta)')] : [];
+  const cta = pill && pill.querySelector('.nav-full .nav-cta');
+  const activeLink = links.find(a => a.classList.contains('active')) || null;
+  const lens = document.createElement('span');
+  lens.className = 'nav-lens';
+  lens.setAttribute('aria-hidden', 'true');
+  if (pill) pill.prepend(lens);
+
+  const restTarget = () => (activeLink && !nav.classList.contains('scrolled')) ? activeLink : avatar;
+  const place = (el) => {
+    if (!el) return;
+    const pr = pill.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    const h = Math.round(r.height);                     // every item now has a capsule-sized footprint
+    lens.classList.toggle('clear', el === cta);
+    lens.classList.toggle('on-avatar', el === avatar);
+    pill.classList.toggle('lens-on-cta', el === cta);
+    const top = Math.round((pr.height - h) / 2);
+    lens.style.left = Math.round(r.left - pr.left) + 'px';
+    lens.style.width = Math.round(r.width) + 'px';
+    lens.style.top = top + 'px';
+    lens.style.height = h + 'px';
+  };
+  const settle = () => { lens.classList.remove('hover'); place(restTarget()); };
+
+  // First placement lands without animating, then the lens becomes visible
+  const init = () => {
+    place(restTarget());
+    // Two frames: first paints the lens seated with transitions off, then transitions arm
+    requestAnimationFrame(() => requestAnimationFrame(() => lens.classList.add('ready')));
+  };
+  init();
+  window.addEventListener('resize', settle);
+  window.addEventListener('load', settle);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle);
+
+  // Pointer: glass follows the hovered link, returns home when the pointer leaves
+  const targets = [avatar, ...links, cta].filter(Boolean);
+  targets.forEach(el => {
+    el.addEventListener('pointerenter', (e) => {
+      if (e.pointerType === 'touch') return;
+      lens.classList.add('hover');
+      place(el);
+    });
+    const press = (on) => { lens.classList.toggle('pressed', on); pill.classList.toggle('pressed', on); };
+    el.addEventListener('pointerdown', () => press(true));
+    el.addEventListener('pointerup', () => press(false));
+    el.addEventListener('pointercancel', () => press(false));
+    el.addEventListener('focus', () => place(el));
+    el.addEventListener('blur', settle);
+  });
+  pill.addEventListener('pointerleave', () => { lens.classList.remove('pressed'); pill.classList.remove('pressed'); settle(); });
+  pill.addEventListener('mouseleave', settle);
+  // Re-seat once the pill has finished expanding/collapsing, so the lens lands on final geometry
+  full.addEventListener('transitionend', (e) => { if (e.propertyName === 'max-width') settle(); });
+  window.addEventListener('pageshow', settle);
+
   update();
 })();
 

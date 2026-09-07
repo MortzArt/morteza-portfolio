@@ -59,43 +59,141 @@ nav {
 nav > * { pointer-events: auto; }
 
 
-/* Floating glass pill: white glass on the light page. Over the black "Let's meet"
-   chapter (body.is-dark) the same glass reads black, like material picking up its ground. */
+/* Liquid Glass (regular variant): blurs and lifts the luminosity of whatever
+   scrolls beneath, picks up its colour, and carries a refractive rim that reads
+   as a lit edge. Over the black "Let's meet" chapter (body.is-dark) the same
+   material reads dark, like glass picking up its ground. */
 .nav-pill {
   position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   height: 54px;
-  padding: 0 6px;
+  padding: 0 7px;                       /* 7px inset → lens radius 20 is concentric with the 27px pill */
   border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow:
-    0 12px 36px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.5s ease, background-color 0.8s ease, border-color 0.8s ease;
+    0 1px 1px rgba(255, 255, 255, 0.9) inset,
+    0 -1px 1px rgba(0, 0, 0, 0.05) inset,
+    0 10px 30px rgba(0, 0, 0, 0.10),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.5s ease, background-color 0.8s ease;
 }
 .nav-pill > * { position: relative; z-index: 1; }
-/* Top sheen, separate layer so it can fade independently of the fill */
+/* Refractive rim: a 1px gradient stroke, bright where light enters (top-left),
+   falling to a faint dark edge where the glass thickens (bottom-right). */
 .nav-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.35) 30%,
+    rgba(0, 0, 0, 0.06) 70%,
+    rgba(0, 0, 0, 0.14) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: opacity 0.8s ease;
+}
+/* Specular sheen across the upper face */
+.nav-pill::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 50%);
+  transition: opacity 0.8s ease;
+}
+
+/* The lens: one piece of thicker glass that sits behind the current item and
+   flows between items (home avatar ⇄ active link ⇄ hovered link) like
+   matchedGeometry in SwiftUI. Positioned by main.js. */
+.nav-lens {
+  position: absolute;
+  z-index: 0 !important;
+  pointer-events: none;                 /* glass is purely visual; never intercepts the link beneath */
+  left: 0; top: 0;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.07),
+    0 3px 8px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform-origin: center;
+  transition: none;
+}
+.nav-lens.ready {
+  transition:
+    left 0.55s cubic-bezier(0.32, 1.35, 0.42, 1),
+    width 0.55s cubic-bezier(0.32, 1.35, 0.42, 1),
+    top 0.55s cubic-bezier(0.32, 1.35, 0.42, 1),
+    height 0.55s cubic-bezier(0.32, 1.35, 0.42, 1),
+    transform 0.55s cubic-bezier(0.32, 1.35, 0.42, 1),
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.3s ease;
+  opacity: 1;
+}
+.nav-lens::after { transition: background 0.35s ease, opacity 0.35s ease; }
+/* Curved dome: bright specular arc at the top, darker thickening at the base */
+.nav-lens::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 60%);
-  opacity: 1;
-  transition: opacity 0.8s ease;
+  background:
+    radial-gradient(ellipse 62% 38% at 50% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 45%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.05) 100%);
 }
-nav.scrolled .nav-pill {
-  background-color: rgba(255, 255, 255, 0.72);
+/* Interactive glass: brightens under the pointer, gives under the finger */
+.nav-lens.hover { background-color: #FFFFFF; }
+/* Over the call-to-action the lens becomes clear glass (Apple's clear variant for
+   rich grounds): no fill of its own, just the lit rim and dome floating above the
+   button's solid colour. It rides above the button so the glass reads on top. */
+.nav-lens.clear, .nav-lens.clear.hover {
+  z-index: 2 !important;
+  background-color: rgba(255, 255, 255, 0.07);
   box-shadow:
-    0 14px 40px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+    inset 0 1px 1px rgba(255, 255, 255, 0.55),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.nav-lens.clear::after {
+  background:
+    radial-gradient(ellipse 62% 38% at 50% 12%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.12) 45%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.15) 100%);
+}
+.nav-lens.pressed, .nav-lens.clear.pressed {
+  transform: scale(0.96);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.09),
+    0 1px 4px rgba(0, 0, 0, 0.14);
+}
+
+/* Scroll edge effect: as content moves beneath, the glass thickens for legibility */
+nav.scrolled .nav-pill {
+  background-color: rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.9) inset,
+    0 -1px 1px rgba(0, 0, 0, 0.05) inset,
+    0 14px 40px rgba(0, 0, 0, 0.14),
+    0 2px 6px rgba(0, 0, 0, 0.06);
 }
 .nav-avatar {
   position: relative;
@@ -104,32 +202,13 @@ nav.scrolled .nav-pill {
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  background: #fff;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.08),
-    0 4px 10px rgba(0, 0, 0, 0.14);
-  transition: box-shadow 0.3s ease;
 }
-.nav-avatar:hover {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.12),
-    0 6px 14px rgba(0, 0, 0, 0.2);
+.nav-avatar img {
+  display: block; width: 100%; height: 100%; object-fit: contain;
+  transform: scale(0.82);
+  transition: transform 0.35s cubic-bezier(0.32, 1.35, 0.42, 1);
 }
-/* Curved-glass dome over the artwork: top specular arc, darker curved bottom */
-.nav-avatar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 62% 38% at 50% 14%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.45) 45%, rgba(255, 255, 255, 0) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.05) 100%);
-  box-shadow:
-    inset 0 -4px 6px rgba(0, 0, 0, 0.07),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
-}
-.nav-avatar img { display: block; width: 100%; height: 100%; object-fit: contain; transform: scale(0.82); }
+.nav-avatar:hover img { transform: scale(0.9); }
 
 /* The two states share one pill; widths animate via max-width */
 .nav-full, .nav-compact {
@@ -147,17 +226,27 @@ nav.scrolled .nav-pill {
 }
 .nav-full a {
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;                          /* hit area matches the lens capsule */
   color: var(--text);
   font-size: 15px;
   font-weight: 500;
   padding: 0 14px;
   opacity: 0.72;
-  transition: opacity 0.2s, color 0.8s ease;
+  transform-origin: center;
+  transition: opacity 0.2s, color 0.8s ease, transform 0.35s cubic-bezier(0.32, 1.35, 0.42, 1);
 }
+.nav-full a:not(.nav-cta):hover { transform: scale(1.06); }
 .nav-full a:first-child { margin-left: 6px; }
 .nav-full a:hover { opacity: 1; }
 .nav-full a.active { opacity: 1; }
+
+.nav-full a { position: relative; z-index: 1; }
+.nav-full a.active { font-weight: 600; }
+
 .nav-cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -169,11 +258,20 @@ nav.scrolled .nav-pill {
   color: #FFFFFF !important;
   font-weight: 600 !important;
   opacity: 1 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.8s ease, color 0.8s ease;
+  transform-origin: center;
+  transition:
+    transform 0.55s cubic-bezier(0.32, 1.35, 0.42, 1),
+    background-color 0.8s ease,
+    color 0.8s ease;
 }
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); }
+/* Pressed with the glass on it, the solid fill gives together with the lens */
+.nav-pill.lens-on-cta.pressed .nav-cta { transform: scale(0.96); transition-duration: 0.25s; transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
 .nav-cta-icon { flex: none; }
+.nav-cta-icon, .nav-cta-label {
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.32, 1.35, 0.42, 1);
+}
+.nav-cta:hover .nav-cta-icon, .nav-cta:hover .nav-cta-label { transform: scale(1.06); }
 
 .nav-compact {
   gap: 10px;
@@ -220,6 +318,8 @@ nav.scrolled .nav-compact {
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-full, .nav-compact, nav.scrolled .nav-full, nav.scrolled .nav-compact { transition: none; }
+  .nav-lens.ready { transition: opacity 0.3s ease; }
+  .nav-full a, .nav-avatar img, .nav-cta-icon, .nav-cta-label { transition: none; }
   .nav-status-dot { animation: none; }
 }
 
@@ -1083,25 +1183,63 @@ body.is-dark nav.scrolled .nav-pill {
     inset 0 1px 0 rgba(255, 255, 255, 0.28),
     inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
-body.is-dark .nav-pill::before { opacity: 0.12; }
-body.is-dark .nav-avatar {
+body.is-dark .nav-pill::before { opacity: 0.35; }
+body.is-dark .nav-pill::after { opacity: 0.12; }
+body.is-dark .nav-lens {
+  background-color: rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.28),
-    0 4px 10px rgba(0, 0, 0, 0.4),
-    0 0 16px rgba(255, 255, 255, 0.22);
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 4px 10px rgba(0, 0, 0, 0.4);
 }
+body.is-dark .nav-lens.hover { background-color: rgba(255, 255, 255, 0.24); }
+/* The avatar keeps a white disc on the dark ground so the line art stays legible;
+   the lens turns white with it when it rests there */
+body.is-dark .nav-avatar { background: #FFFFFF; }
+body.is-dark .nav-lens.on-avatar, body.is-dark .nav-lens.on-avatar.hover {
+  background-color: #FFFFFF;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 4px 10px rgba(0, 0, 0, 0.4);
+}
+body.is-dark .nav-lens.on-avatar::after { opacity: 1; }
+body.is-dark .nav-lens::after { opacity: 0.55; }
 body.is-dark .nav-full a { color: #FFFFFF; }
 body.is-dark .nav-compact { color: #FFFFFF; }
-body.is-dark .nav-cta { background: rgba(255, 255, 255, 0.92); color: #1D1D1F !important; }
+body.is-dark .nav-cta { background: #FFFFFF; color: #1D1D1F !important; }
+body.is-dark .nav-lens.clear, body.is-dark .nav-lens.clear.hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+body.is-dark .nav-lens.clear::after {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 62% 38% at 50% 12%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.45) 45%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.06) 100%);
+}
+
+/* Accessibility: honour Reduce Transparency, on both grounds */
+@media (prefers-reduced-transparency: reduce) {
+  .nav-pill { background-color: rgba(255, 255, 255, 0.96); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav-lens { background-color: #FFFFFF; }
+  body.is-dark .nav-pill { background-color: rgba(28, 28, 30, 0.96); }
+  body.is-dark .nav-lens { background-color: rgba(255, 255, 255, 0.22); }
+}
 
 /* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 768px) {
   .page { padding: 88px 20px 48px; }
 
   nav { top: 12px; padding: 0 16px; }
-  .nav-pill { height: 48px; padding: 0 5px; }
+  .nav-pill { height: 48px; padding: 0 6px; }
   .nav-avatar { width: 36px; height: 36px; }
-  .nav-full a { font-size: 14px; padding: 0 10px; }
+  .nav-full a { font-size: 14px; padding: 0 10px; height: 36px; }
   .nav-cta { height: 36px; width: 36px; padding: 0 !important; margin-left: 4px; justify-content: center; }
   .nav-cta-label { display: none; }
   .nav-compact { font-size: 14px; }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>PONS Case Study | Mori Ebrahimi</title>
 <link rel="icon" type="image/png" href="../../favicon.png"/>
-<link rel="stylesheet" href="../../style.css?v=20260906d"/>
+<link rel="stylesheet" href="../../style.css?v=20260907n"/>
 </head>
 <body>
 <div class="page">
@@ -58,11 +58,14 @@
     <p class="cs-ch-intro">PONS had supply. PONS had demand. But the bridge between them was broken. Clients were arriving, browsing briefly, and leaving without hiring. The team spent two full days manually assembling shortlists that still felt untrustworthy, with no visible quality signal on any profile.</p>
 
     <div class="cs-find-label">Research & Discovery</div>
+    <div class="cs-research-row">
+    <div class="cs-research-img"><img src="images/discovery.png?v=3" alt="" loading="lazy"/></div>
     <div class="cs-findings">
       <div class="cs-find"><span class="cs-find-num">Finding 01</span><p><strong>Choice overload was the #1 drop-off driver.</strong> Clients who browsed more than 20 profiles almost never converted. The more they saw, the less they trusted any single option.</p></div>
       <div class="cs-find"><span class="cs-find-num">Finding 02</span><p><strong>Verified meant nothing without context.</strong> A basic ID check wasn't reassuring; it just confirmed the person existed. Clients wanted to know: can this person do the job, and has someone I trust already confirmed that?</p></div>
       <div class="cs-find"><span class="cs-find-num">Finding 03</span><p><strong>The team's expert filtering was invisible.</strong> Hours of manual shortlisting were happening behind the scenes, but clients had no idea; they assumed they were looking at a raw, unfiltered list.</p></div>
       <div class="cs-find"><span class="cs-find-num">Finding 04</span><p><strong>SDR roles carried the highest anxiety.</strong> Sales hires are performance-sensitive. A bad SDR doesn't just cost money; they damage pipeline momentum. This segment needed the most reassurance before committing.</p></div>
+    </div>
     </div>
 
     <div class="cs-find-label">Design Decisions</div>
@@ -77,8 +80,8 @@
         <div class="cs-dec-title">02 · The Badge System: Trust You Can See</div>
         <p style="margin-bottom:10px">A two-tier trust system that made quality visible at every touchpoint, shaped by PM conversations and engineering input on what verification workflows were realistically buildable.</p>
         <div class="cs-badge-row">
-          <div class="cs-badge-box"><div class="cs-badge-name">Verified Badge</div><div class="cs-badge-desc">Identity confirmed, profile complete, background check passed.</div></div>
-          <div class="cs-badge-box highlight"><div class="cs-badge-name lime">Vetted Badge</div><div class="cs-badge-desc">Personally interviewed by PONS, performance claims validated, communication style assessed.</div></div>
+          <div class="cs-badge-box"><div class="cs-badge-name"><svg class="cs-badge-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Verified Badge</div><div class="cs-badge-desc">Identity confirmed, profile complete, background check passed.</div></div>
+          <div class="cs-badge-box highlight"><div class="cs-badge-name lime"><svg class="cs-badge-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.56 10.7401L20.2 9.16006C19.94 8.86006 19.73 8.30006 19.73 7.90006V6.20006C19.73 5.14006 18.86 4.27006 17.8 4.27006H16.1C15.71 4.27006 15.14 4.06006 14.84 3.80006L13.26 2.44006C12.57 1.85006 11.44 1.85006 10.74 2.44006L9.17 3.81006C8.87 4.06006 8.3 4.27006 7.91 4.27006H6.18C5.12 4.27006 4.25 5.14006 4.25 6.20006V7.91006C4.25 8.30006 4.04 8.86006 3.79 9.16006L2.44 10.7501C1.86 11.4401 1.86 12.5601 2.44 13.2501L3.79 14.8401C4.04 15.1401 4.25 15.7001 4.25 16.0901V17.8001C4.25 18.8601 5.12 19.7301 6.18 19.7301H7.91C8.3 19.7301 8.87 19.9401 9.17 20.2001L10.75 21.5601C11.44 22.1501 12.57 22.1501 13.27 21.5601L14.85 20.2001C15.15 19.9401 15.71 19.7301 16.11 19.7301H17.81C18.87 19.7301 19.74 18.8601 19.74 17.8001V16.1001C19.74 15.7101 19.95 15.1401 20.21 14.8401L21.57 13.2601C22.15 12.5701 22.15 11.4301 21.56 10.7401ZM16.16 10.1101L11.33 14.9401C11.19 15.0801 11 15.1601 10.8 15.1601C10.6 15.1601 10.41 15.0801 10.27 14.9401L7.85 12.5201C7.56 12.2301 7.56 11.7501 7.85 11.4601C8.14 11.1701 8.62 11.1701 8.91 11.4601L10.8 13.3501L15.1 9.05006C15.39 8.76006 15.87 8.76006 16.16 9.05006C16.45 9.34006 16.45 9.82006 16.16 10.1101Z"/></svg>Vetted Badge</div><div class="cs-badge-desc">Personally interviewed by PONS, performance claims validated, communication style assessed.</div></div>
         </div>
         <p style="margin-top:10px">The design principle was <em>earned visibility</em>. Vetted profiles surfaced higher in shortlists, carried a distinct visual treatment, and were the only ones eligible for the premium agent workflow. For clients, the Vetted badge acted as a proxy for a trusted referral.</p>
       </div>
@@ -106,10 +109,15 @@
     </div>
 
     <div class="cs-find-label">Options Considered</div>
+    <div class="cs-options-row">
     <div class="cs-options">
-      <div class="cs-opt out"><span class="cs-opt-badge out">RULED OUT</span><div><h5>Option 1: Automate Everything</h5><p>Use AI to screen video introductions at scale. Ruled out. AI wasn't reliable enough to assess personality depth, fluency under pressure, or authentic communication style.</p></div></div>
-      <div class="cs-opt out"><span class="cs-opt-badge out">RULED OUT</span><div><h5>Option 2: The Waiting Room</h5><p>Keep all reps hidden until fully vetted. Ruled out. A platform that looks half-empty tells a story no badge can fix. New clients wouldn't wait to discover the pool was deep.</p></div></div>
-      <div class="cs-opt selected"><span class="cs-opt-badge sel">SELECTED</span><div><h5>Option 3: The Two-Tier System</h5><p>Let reps go live with a Verified badge while awaiting their Vetted interview. Kept the pool visible and active, while badge distinction preserved the quality signal.</p></div></div>
+      <div class="cs-opt out"><div class="cs-opt-head"><h5>Option 1: Automate Everything</h5><span class="cs-opt-badge out">RULED OUT</span></div><p>Use AI to screen video introductions at scale. Ruled out. AI wasn't reliable enough to assess personality depth, fluency under pressure, or authentic communication style.</p></div>
+      <div class="cs-opt out"><div class="cs-opt-head"><h5>Option 2: The Waiting Room</h5><span class="cs-opt-badge out">RULED OUT</span></div><p>Keep all reps hidden until fully vetted. Ruled out. A platform that looks half-empty tells a story no badge can fix. New clients wouldn't wait to discover the pool was deep.</p></div>
+      <div class="cs-opt selected"><div class="cs-opt-head"><h5>Option 3: The Two-Tier System</h5><span class="cs-opt-badge sel">SELECTED</span></div><p>Let reps go live with a Verified badge while awaiting their Vetted interview. Kept the pool visible and active, while badge distinction preserved the quality signal.</p></div>
+    </div>
+    <div class="cs-video">
+      <video src="images/shortlist-clay-xs.mp4" autoplay muted loop playsinline preload="metadata" aria-label="The Shortlist: from 3,000 profiles to the right fit"></video>
+    </div>
     </div>
 
     <div class="cs-find-label">Protecting Quality Behind the Scenes</div>

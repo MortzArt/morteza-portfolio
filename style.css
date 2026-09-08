@@ -406,7 +406,7 @@ nav.scrolled .nav-compact {
   display: grid;
   grid-template-columns: minmax(280px, 460px) 1fr;
   gap: 48px;
-  align-items: start;
+  align-items: center;
 }
 .hero-frame {
   width: 100%;
@@ -426,7 +426,7 @@ nav.scrolled .nav-compact {
   transform: scale(1);
   transform-origin: center;
 }
-.hero-copy { padding-top: 4px; }
+.hero-copy { padding-top: 0; }
 .hero .highlight { color: var(--accent); }
 .hero-bio {
   font-size: 21px;

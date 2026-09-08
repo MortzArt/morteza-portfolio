@@ -697,11 +697,16 @@ nav.scrolled .nav-compact {
 .project:nth-child(even) > * { direction: ltr; }
 
 /* ══════════ BEHANCE SECTION ══════════ */
+/* Full-bleed gray band: breaks out of the 1024px page column to the viewport edges,
+   while the content stays aligned to the page column via --gutter */
 .behance-section {
+  --gutter: max(24px, calc((100vw - 1024px) / 2 + 24px));
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   margin-bottom: 120px;
-  padding: 56px;
+  padding: 112px var(--gutter);
   background: var(--bg2);
-  border-radius: var(--r-lg);
+  border-radius: 0;
   display: flex;
   align-items: center;
   gap: 56px;
@@ -1453,8 +1458,9 @@ body.is-dark .nav-lens.clear::after {
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
-    padding: 28px 24px;
-    border-radius: var(--r-md);
+    --gutter: 20px;
+    padding: 56px var(--gutter);
+    border-radius: 0;
   }
   .behance-img { flex: none; width: 100%; }
 

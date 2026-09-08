@@ -391,7 +391,31 @@ nav.scrolled .nav-compact {
   transform-origin: center;
   pointer-events: none;
   user-select: none;
+  overflow: visible;
 }
+/* Each letter (and the underline) is its own path: it flashes to a colour the moment
+   the pointer crosses it, then drifts back to ink — the coolors.co hero effect */
+.hero-doodle path {
+  fill: var(--text);
+  pointer-events: bounding-box;          /* the thin letterforms get a generous hit area */
+  transition: fill 1.4s ease, stroke 1.4s ease;
+}
+.hero-doodle .doodle-line { fill: none; stroke: var(--text); stroke-miterlimit: 10; }
+.hero-doodle path:hover { transition-duration: 0.08s; }
+.hero-doodle path:not(.doodle-line) { fill: var(--text); }
+.hero-doodle path[data-l="1"]:hover  { fill: #B565F3; }
+.hero-doodle path[data-l="2"]:hover  { fill: #E14ECA; }
+.hero-doodle path[data-l="3"]:hover  { fill: #F94E6D; }
+.hero-doodle path[data-l="4"]:hover  { fill: #FF8A3D; }
+.hero-doodle path[data-l="5"]:hover  { fill: #F2C316; }
+.hero-doodle path[data-l="6"]:hover  { fill: #2FB35A; }
+.hero-doodle path[data-l="7"]:hover  { fill: #16C7A8; }
+.hero-doodle path[data-l="8"]:hover  { fill: #22B8F0; }
+.hero-doodle path[data-l="9"]:hover  { fill: #4E7AF9; }
+.hero-doodle path[data-l="10"]:hover { fill: #7A5CF5; }
+.hero-doodle path[data-l="11"]:hover { fill: #E14ECA; }
+.hero-doodle path.doodle-line, .hero-doodle path.doodle-line:hover { fill: none; stroke: var(--text); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .hero-doodle path { transition: none; } }
 
 /* Word swap: all words stacked in one grid cell so width never jumps */
 .word-swap {
@@ -469,23 +493,29 @@ nav.scrolled .nav-compact {
   border-radius: var(--r-lg);
   margin-bottom: 24px;
   cursor: pointer;
-  align-items: center;
+  align-items: stretch;
 }
 .project:hover .p-title { color: var(--accent); }
 .project:hover .p-arrow { opacity: 1; transform: translateX(0); }
 .project:hover .p-img img { transform: scale(1.03); }
 
 .p-img {
+  position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 10;
+  min-height: 260px;                    /* the copy column sets the height; the photo is cropped to fit */
   background: var(--bg);
   border-radius: var(--r-md);
 }
+.p-img.p-anim { aspect-ratio: 4 / 5; min-height: 0; align-self: center; }
 .p-img img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;                 /* the frame, not the moving image, is the hit target */
+  will-change: transform;
   transition: transform 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
@@ -502,35 +532,73 @@ nav.scrolled .nav-compact {
   border: 0;
   pointer-events: none;  /* the whole card stays one click target */
 }
+/* A card-owned layer over the iframe so hit-testing (and the cursor) stays in this
+   document; Chrome's out-of-process frames otherwise flicker the cursor */
+.p-img.p-anim::after { content: ''; position: absolute; inset: 0; cursor: pointer; }
+.project, .project * { cursor: pointer; }
 
+/* Card type: eyebrow → display title → lede → tabular figures. Display face for the
+   title and figures (SF Pro Display stack), text face for the lede. */
+.p-info {
+  display: flex;
+  flex-direction: column;
+}
+/* Flexible spacers: the meta sits at the top, the copy floats centred beneath it
+   with at least 28px of clearance; when the column is content-height they collapse */
+.p-info::before { content: ''; flex: 1 1 28px; order: -2; }
+.p-info::after  { content: ''; flex: 1 1 0; order: 1; }
 .p-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 .p-title {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.026em;
+  line-height: 1.04;
+  text-wrap: balance;
   transition: color 0.2s;
 }
 .p-arrow {
-  font-size: 22px;
+  flex: none;
+  font-size: 28px;
+  line-height: 1;
   color: var(--accent);
   opacity: 0;
   transform: translateX(-8px);
   transition: all 0.25s;
-  margin-top: 4px;
+  margin-top: 6px;
 }
+/* Client · year: the very first line of the card */
+.p-meta {
+  order: -3;
+  display: flex;
+  align-items: baseline;
+  font-size: 14px;
+  line-height: 1;
+}
+.p-client { font-weight: 600; color: var(--text); letter-spacing: -0.005em; }
+.p-year { color: var(--muted); font-variant-numeric: tabular-nums; }
+.p-year::before { content: '·'; margin: 0 7px; color: var(--faint); }
+/* Eyebrow: sits above the title */
 .p-tags {
+  order: -1;
   display: flex;
   gap: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
 }
-.p-tag { font-size: 13px; color: var(--muted); }
+.p-tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .p-tag + .p-tag { position: relative; }
 .p-tag + .p-tag::before {
   content: '·';
@@ -539,18 +607,29 @@ nav.scrolled .nav-compact {
   color: var(--faint);
 }
 .p-desc {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.55;
-  max-width: 46ch;
+  font-size: 17px;
+  color: var(--text);
+  opacity: 0.82;
+  line-height: 1.5;
+  letter-spacing: -0.004em;
+  max-width: 42ch;
 }
-.p-metrics { display: flex; gap: 36px; margin-top: 22px; }
+.p-metrics { display: flex; gap: 40px; margin-top: 26px; }
 .p-metric-val {
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-.p-metric-lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.p-metric-lbl {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 6px;
+  letter-spacing: 0.01em;
+}
 
 /* alternate image side */
 .project:nth-child(even) { direction: rtl; }
@@ -591,24 +670,55 @@ nav.scrolled .nav-compact {
 }
 
 /* ══════════ ABOUT SECTION ══════════ */
-.about { margin-bottom: 110px; }
+/* Let's meet: the tea photo is the section's ground; copy sits on a dark gradient over it */
+.about {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+  min-height: 560px;
+  padding: 44px 56px 56px;
+  border-radius: var(--r-lg);
+  background: #000;
+  color: #F5F5F7;
+  margin-bottom: 110px;
+}
+.about .sec-head, .about-content > div:not(.about-portrait) { position: relative; z-index: 1; }
+.about-content { position: static; }   /* so the portrait anchors to the card, not the grid */
+.about .sec-head { margin-bottom: 0; }
+.about .btn-hello-sec { color: #2997FF; border-color: #2997FF; }
+.about .btn-hello-sec:hover { background: #2997FF; color: #000; }
+.about .sec-label, .about-quote { color: #F5F5F7; }
 .about-content {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr;
+  max-width: 680px;
   align-items: center;
 }
 .about-portrait {
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
-  background: var(--bg2);
-  border-radius: var(--r-md);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 0;
+  background: #000;
 }
 .about-portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 100% 50%;             /* keep both cups in frame; the blurred left side gives way */
   display: block;
+}
+.about-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 100%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
 }
 .about-quote {
   font-size: clamp(26px, 3vw, 36px);
@@ -619,7 +729,7 @@ nav.scrolled .nav-compact {
 }
 .about-text {
   font-size: 17px;
-  color: var(--muted);
+  color: #C7C7CC;
   line-height: 1.6;
   margin-bottom: 28px;
 }
@@ -1262,8 +1372,15 @@ body.is-dark .nav-lens.clear::after {
   }
   .behance-img { flex: none; width: 100%; }
 
-  .about-content { grid-template-columns: 1fr; gap: 32px; }
-  .about-portrait { max-width: 100%; }
+  .p-img { aspect-ratio: 16 / 10; min-height: 0; }   /* stacked: the photo keeps a frame ratio */
+  .p-info::before { flex: 0 0 18px; }
+  .p-info::after { display: none; }
+  .p-title { font-size: 34px; }
+  .p-desc { font-size: 16px; }
+  .p-metric-val { font-size: 27px; }
+  .p-metrics { gap: 28px; }
+  .about { min-height: 520px; padding: 28px 22px 32px; gap: 32px; border-radius: var(--r-md); }
+  .about-content { gap: 32px; }
   .about-intro { grid-template-columns: 1fr; gap: 32px; }
 
   .exp-item { grid-template-columns: 1fr; gap: 6px; padding: 28px 0; }

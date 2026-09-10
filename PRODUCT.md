@@ -20,11 +20,11 @@ A product designer with a diverse history in marketing and graphic design who tu
 
 ## Operating Context
 
-Static HTML/CSS/JS site (no framework, no build step) deployed on GitHub Pages with a custom domain (CNAME: mortzart.com). Pages: home (`index.html`), `/experience`, `/aboutme`, `/projects`, and two case studies (`/casestudy/pons`, `/casestudy/cf`). Shared `style.css` and `main.js` at root; the CF case study has its own `cf-style.css`.
+Static HTML/CSS/JS site (no framework, no build step) deployed on GitHub Pages with a custom domain (CNAME: mortzart.com). Pages: home (`index.html`), `/experience`, `/aboutme`, `/projects`, and three case studies (`/casestudy/remotereps`, `/casestudy/pons`, `/casestudy/cf`). Shared `style.css` and `main.js` at root; the CF case study has its own `cf-style.css`.
 
 ## Capabilities and Constraints
 
-- Two written case studies: PONS (talent-marketplace trust/service redesign) and Creative Fabrica (search experience redesign).
+- Three written case studies: RemoteReps Operations Platform (seven tools consolidated into one AI-native platform, 2026), PONS (talent-marketplace trust/service redesign) and Creative Fabrica (search experience redesign). RemoteReps sits first on the home page.
 - Broader work lives on Behance (behance.net/emorteza); the site deliberately links out rather than duplicating it.
 - Experience page mirrors the CV verbatim (`Morteza Ebrahimi - CV.pdf` in repo root); keep them in sync.
 - The name is presented as "Mori" across the site (renamed from "Morteza" deliberately).
@@ -38,7 +38,7 @@ Static HTML/CSS/JS site (no framework, no build step) deployed on GitHub Pages w
 
 ## Evidence on Hand
 
-- Case-study metrics: PONS +60% client-to-hire, shortlist time 2d→1h; Creative Fabrica 8 competitors analyzed, 9 key improvements. These are real claims; do not invent additional metrics or testimonials.
+- Case-study metrics: RemoteReps 7→1 tools, 43 modules, 25+ AI capabilities, 106 screens, shipped in seven months; PONS +60% client-to-hire, shortlist time 2d→1h; Creative Fabrica 8 competitors analyzed, 9 key improvements. These are real claims; do not invent additional metrics or testimonials.
 - Assets in repo: `Morteza Ebrahimi - CV.pdf`, `behance.jpg`, `tea.webp`, `me2.jpg`, `favicon.png`, case-study images under `casestudy/*/images/`.
 - Contact: hello@mortzart.com, Google Calendar booking link, Behance profile.
 - No testimonials, press, or client logos on hand; do not fabricate any.

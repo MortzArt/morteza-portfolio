@@ -1,0 +1,141 @@
+/* RemoteReps hero mosaic: a bento of mixed-size tiles. One blue hero tile carries the
+   platform, six white group tiles expand to their modules and pin the tools they
+   replaced, two stat tiles carry the numbers. Depth is tonal (fog frame, white tiles,
+   blue hero) plus the 1px blue ring. No shadows, no gradients. */
+.rr-map {
+  aspect-ratio: auto;
+  padding: 10px;
+  background: var(--bg2);
+}
+.rr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(148px, auto) minmax(104px, auto) minmax(122px, auto) minmax(150px, auto);
+  grid-template-areas:
+    "a c d e"
+    "a h h e"
+    "b h h i"
+    "b f g g";
+  gap: 10px;
+}
+.rr-hero { grid-area: h; }
+.rr-area-a { grid-area: a; } .rr-area-b { grid-area: b; } .rr-area-c { grid-area: c; } .rr-area-d { grid-area: d; }
+.rr-area-e { grid-area: e; } .rr-area-f { grid-area: f; } .rr-area-g { grid-area: g; } .rr-area-i { grid-area: i; }
+
+/* Shared tile */
+.rr-tile, .rr-hero, .rr-stat {
+  position: relative;
+  background: var(--bg);
+  border-radius: var(--r-md);
+  padding: 16px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.rr-tile-title, .rr-stat-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.22;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+/* Group tile: a flip card. Front = title and the retired tools' marks; the plus button
+   rotates it to a back face with the module list. Faces carry the surface, the tile is the stage. */
+.rr-tile { background: none; padding: 0; perspective: 1400px; }
+.rr-card { position: relative; flex: 1; display: flex; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1); }
+.rr-tile.is-flipped .rr-card { transform: rotateY(180deg); }
+.rr-face {
+  background: var(--bg);
+  border-radius: var(--r-md);
+  padding: 16px 18px 16px;
+  display: flex; flex-direction: column; min-width: 0;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.rr-front { flex: 1; }
+.rr-back { position: absolute; inset: 0; transform: rotateY(180deg); overflow: auto; padding: 14px 18px 14px; }
+.rr-back-title { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: -0.005em; }
+
+.rr-avatars { display: flex; margin-top: auto; padding-top: 14px; }
+.rr-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--bg); box-shadow: 0 0 0 2px var(--bg), inset 0 0 0 1px var(--bg3);
+  display: grid; place-items: center;
+}
+.rr-avatar + .rr-avatar { margin-left: -8px; }
+.rr-avatar img, .rr-avatar svg { width: 16px; height: 16px; display: block; }
+.rr-avatar img { border-radius: 50%; }
+
+.rr-mods { list-style: none; margin: 6px 0 0; padding: 6px 36px 0 0; border-top: 1px solid var(--bg3); }
+.rr-mods li { padding: 2px 0; line-height: 1.3; }
+.rr-mod { display: block; font-size: 13.5px; color: var(--text); }
+.rr-sub { display: block; font-size: 12px; color: var(--muted); }
+.rr-replaced-text { font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: auto; padding: 8px 40px 0 0; }
+.rr-replaced-text b { font-weight: 600; color: var(--text); }
+
+/* The plus button: bottom-right of the stage, above both faces; turns into a cross when flipped */
+.rr-flip {
+  position: absolute; right: 12px; bottom: 12px; z-index: 2;
+  width: 28px; height: 28px; border-radius: 50%; border: 0; padding: 0;
+  background: var(--bg2); color: var(--text); cursor: pointer;
+  display: grid; place-items: center;
+  transition: background 0.2s, color 0.2s, transform 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.rr-flip svg { width: 12px; height: 12px; display: block; }
+.rr-flip:hover { background: var(--accent); color: #fff; }
+.rr-flip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.rr-tile.is-flipped .rr-flip { transform: rotate(45deg); background: var(--text); color: #fff; }
+.rr-tile.is-flipped .rr-flip:hover { background: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-card, .rr-flip { transition: none; }
+}
+
+/* Hero tile: the one blue surface */
+.rr-hero { background: var(--accent); color: #fff; padding: 20px 22px; overflow: hidden; }
+.rr-hero-mark { width: 40px; height: 40px; border-radius: 11px; background: #fff; display: grid; place-items: center; }
+.rr-hero-mark img { width: 26px; height: 26px; display: block; }
+.rr-hero-title { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margin-top: 14px; max-width: 12ch; text-wrap: balance; }
+.rr-hero-sub { font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, 0.82); margin-top: 8px; max-width: 21ch; }
+.rr-hero-sub b { font-weight: 600; color: #fff; }
+/* Floating widgets: what the floor sees, drawn as small white cards */
+.rr-widgets { position: absolute; right: 18px; bottom: 18px; display: grid; gap: 8px; justify-items: end; }
+.rr-widget:nth-child(2) { margin-right: 30px; }
+.rr-widget {
+  background: var(--bg); color: var(--text); border-radius: var(--r-sm);
+  padding: 8px 12px; font-size: 12px; line-height: 1.3; display: flex; align-items: center; gap: 8px;
+}
+.rr-widget b { display: block; font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.rr-widget span { color: var(--muted); }
+.rr-widget-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+.rr-widget--score b { color: var(--accent); }
+
+/* Stat tiles */
+.rr-stat-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+.rr-stat-num { font-size: 38px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; margin-top: auto; padding-top: 10px; }
+.rr-stat-num small { font-size: 26px; letter-spacing: -0.02em; color: var(--text); margin-left: 6px; }
+.rr-stat-label { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.35; }
+.rr-personas { display: flex; margin-top: auto; padding-top: 10px; }
+.rr-persona {
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12px; font-weight: 600; color: var(--text); background: var(--bg2);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+.rr-persona + .rr-persona { margin-left: -8px; }
+.rr-persona:nth-child(2) { background: var(--bg3); }
+.rr-persona:nth-child(3) { background: var(--accent); color: #fff; }
+.rr-persona:nth-child(4) { background: var(--text); color: #fff; }
+
+@media (max-width: 768px) {
+  .rr-map { padding: 10px; border-radius: var(--r-md); }
+  .rr-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-template-areas: none; grid-auto-rows: auto; gap: 10px; }
+  .rr-hero, .rr-tile, .rr-stat { grid-area: auto; }
+  .rr-hero { order: -1; min-height: 360px; }
+  .rr-widgets { position: static; margin-top: 26px; justify-items: start; }
+  .rr-widget:nth-child(2) { margin-right: 0; margin-left: 36px; }
+  .rr-replaced { flex-direction: row; align-items: center; gap: 12px; }
+  .rr-hero-title { font-size: 30px; }
+  .rr-tile, .rr-stat { border-radius: var(--r-sm); padding: 18px; min-height: 0; }
+  .rr-stat-num { font-size: 44px; padding-top: 14px; }
+}

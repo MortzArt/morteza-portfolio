@@ -596,6 +596,9 @@ nav.scrolled .nav-compact {
 /* A card-owned layer over the iframe so hit-testing (and the cursor) stays in this
    document; Chrome's out-of-process frames otherwise flicker the cursor */
 .p-img.p-anim::after { content: ''; position: absolute; inset: 0; cursor: pointer; }
+/* Tall still: a 4:5 card artwork (RemoteReps) shares the animated slot's ratio so
+   the whole composition shows instead of being cropped to the copy column's height */
+.p-img.p-tall { aspect-ratio: 4 / 5; min-height: 0; align-self: center; background: #0B1119; }
 .project, .project * { cursor: pointer; }
 
 /* Card type: eyebrow → display title → lede → tabular figures. Display face for the
